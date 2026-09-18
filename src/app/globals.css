@@ -1,0 +1,181 @@
+@import "tailwindcss";
+
+/* ==========================================================================
+   Design Tokens — Light Corporate Theme
+   Background #FFFFFF · Primary Accent #0284C7 · Plus Jakarta Sans
+   ========================================================================== */
+
+:root {
+  /* Core palette */
+  --background: #ffffff;
+  --foreground: #0b1220;
+
+  /* Surfaces & borders */
+  --surface: #f1f5f9;
+  --surface-2: #e2e8f0;
+  --border-subtle: rgba(11, 18, 32, 0.1);
+
+  /* Accents */
+  --primary: #0284c7;
+  --primary-foreground: #ffffff;
+  --muted: #5b6b81;
+}
+
+@theme inline {
+  /* Color tokens */
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-surface: var(--surface);
+  --color-surface-2: var(--surface-2);
+  --color-border-subtle: var(--border-subtle);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-muted: var(--muted);
+
+  /* Typography — Plus Jakarta Sans is self-hosted by next/font and exposed as
+     `--font-jakarta` in app/layout.tsx. The system stack after it keeps the
+     first paint instant while the webfont swaps in. */
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
+    "Segoe UI", sans-serif;
+
+  /* Mono → timeline markers, step counters, and tabular labels. */
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
+
+  /* Global responsive breakpoints */
+  --breakpoint-sm: 40rem; /* 640px  */
+  --breakpoint-md: 48rem; /* 768px  */
+  --breakpoint-lg: 64rem; /* 1024px */
+  --breakpoint-xl: 80rem; /* 1280px */
+  --breakpoint-2xl: 96rem; /* 1536px */
+
+  /* Keyframe animations */
+  --animate-float: float 7s ease-in-out infinite;
+  --animate-pulse-glow: pulse-glow 5s ease-in-out infinite;
+  --animate-marquee: marquee 32s linear infinite;
+
+  @keyframes marquee {
+    to {
+      transform: translateX(-50%);
+    }
+  }
+
+  @keyframes float {
+    0%,
+    100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-14px);
+    }
+  }
+
+  @keyframes pulse-glow {
+    0%,
+    100% {
+      opacity: 0.4;
+    }
+    50% {
+      opacity: 0.9;
+    }
+  }
+}
+
+/* ==========================================================================
+   Base styles
+   ========================================================================== */
+
+html {
+  color-scheme: light;
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* Keep anchored section headings clear of the fixed navbar when scrolling. */
+section[id] {
+  scroll-margin-top: 6rem;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--primary);
+  color: var(--primary-foreground);
+}
+
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--surface);
+}
+::-webkit-scrollbar-thumb {
+  background: #cbd5e1;
+  border-radius: 999px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #94a3b8;
+}
+
+/* ==========================================================================
+   Custom utilities
+   ========================================================================== */
+
+/* Accent blueprint grid — revealed under the cursor in the hero */
+@utility bg-grid-accent {
+  background-image: linear-gradient(
+      to right,
+      rgba(2, 132, 199, 0.4) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(2, 132, 199, 0.4) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+/* Gradient headline text */
+@utility text-gradient {
+  background: linear-gradient(92deg, #0b1220 0%, var(--primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Frosted glass surface — solid white navbar / dropdown background */
+@utility glass {
+  background: #ffffff;
+  border: 1px solid rgba(11, 18, 32, 0.06);
+}
+
+/* Primary accent glow */
+@utility glow-primary {
+  box-shadow:
+    0 0 24px rgba(2, 132, 199, 0.18),
+    0 0 64px rgba(2, 132, 199, 0.06);
+}
+
+/* Subtle blueprint grid backdrop */
+@utility bg-grid {
+  background-image: linear-gradient(
+      to right,
+      rgba(11, 18, 32, 0.06) 1px,
+      transparent 1px
+    ),
+    linear-gradient(to bottom, rgba(11, 18, 32, 0.06) 1px, transparent 1px);
+  background-size: 56px 56px;
+}
+
+

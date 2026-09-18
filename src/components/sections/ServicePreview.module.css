@@ -1,0 +1,16 @@
+.card { transform: rotate(-2deg); transition: transform 300ms ease; min-width: 0; height: 100%; }
+.card:nth-child(even) { transform: rotate(2deg); }
+.card:hover, .card:focus-within { transform: rotate(0); }
+.frame { display: flex; flex-direction: column; height: 100%; }
+.header { min-height: 104px; }
+.viewport { height: 400px; overflow: hidden; }
+.track { animation: previewScroll 30s linear infinite; }
+.card:hover .track, .card:focus-within .track, .paused { animation-play-state: paused; }
+.screen { min-height: 680px; }
+@keyframes previewScroll { to { transform: translateY(-50%); } }
+@media (prefers-reduced-motion: reduce) {
+  .card, .card:nth-child(even) { transform: none; transition: none; }
+  .viewport { overflow-y: auto; }
+  .track { animation: none; }
+  .duplicate { display: none; }
+}
