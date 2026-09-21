@@ -1,4 +1,4 @@
-/** Custom geometric F mark drawn for this project, not a stock icon. */
+// Custom geometric F mark drawn for this project, not a stock icon.
 export default function BrandMark({ className }: { className?: string }) {
   return (
     <svg viewBox="0 0 64 64" className={className} aria-hidden="true" focusable="false">

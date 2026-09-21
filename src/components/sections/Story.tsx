@@ -37,10 +37,7 @@ const principles = [
   "Fixed-scope proposals with no surprises",
 ];
 
-/**
- * The agency story as a vertical timeline plus the standard operating
- * principles / quality-assurance commitments grid.
- */
+// Agency story timeline + operating principles.
 export default function Story() {
   return (
     <section className="relative border-t border-border-subtle bg-surface/40 py-8 sm:py-14">

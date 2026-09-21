@@ -1,10 +1,6 @@
 type IconProps = { className?: string };
 
-/**
- * Brand icons (LinkedIn / Instagram).
- * lucide-react v1 removed brand icons, so these live here as inline SVGs.
- */
-
+// Inline brand icons (lucide-react removed brand icons).
 export function LinkedInIcon({ className }: IconProps) {
   return (
     <svg

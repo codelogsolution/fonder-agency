@@ -34,11 +34,7 @@ const BUDGET_CHOICES: BudgetChoice[] = [
   { label: "Not sure yet \u2014 need guidance" },
 ];
 
-/**
- * Phase-1 lead qualifier — lightweight button-based chat pinned
- * bottom-right. No auto-popup, no external scripts. Flow:
- * pick service -> pick budget -> WhatsApp or contact form.
- */
+// Lead qualifier: pick service -> pick budget -> WhatsApp or contact form.
 export default function LeadAssistant({ initialOpen = false }: { initialOpen?: boolean }) {
   const [open, setOpen] = useState(initialOpen);
   const [step, setStep] = useState<Step>("service");

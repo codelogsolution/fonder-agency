@@ -11,10 +11,7 @@ type CountUpProps = {
   className?: string;
 };
 
-/**
- * Animates a number from 0 to `to` with a spring the first time it
- * scrolls into view. Formats as `${prefix}${value}${suffix}`.
- */
+// Counts up to `to` with a spring when scrolled into view.
 export default function CountUp({
   to,
   decimals = 0,

@@ -6,7 +6,7 @@ type PageHeaderProps = {
   description?: string;
 };
 
-/** Consistent page hero for interior routes (clears the fixed navbar). */
+// Consistent page hero for interior routes (clears the fixed navbar).
 export default function PageHeader({
   eyebrow,
   title,

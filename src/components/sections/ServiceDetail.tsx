@@ -5,11 +5,7 @@ import { getServicePage } from "@/config/site";
 import Reveal from "@/components/motion/Reveal";
 import CallToAction from "@/components/sections/CallToAction";
 
-/**
- * Shared template for physical service detail pages (/services/[slug]).
- * Content is fully driven by `servicePages` in src/config/site.ts —
- * with optimized background banners and the four-phase process breakdown.
- */
+// Shared layout for /services/[slug]; content comes from site.ts.
 export default function ServiceDetail({ slug, children }: { slug: string; children?: ReactNode }) {
   const service = getServicePage(slug);
   if (!service) return null;

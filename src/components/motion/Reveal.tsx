@@ -5,18 +5,12 @@ import { motion, useReducedMotion } from "framer-motion";
 
 type RevealProps = {
   children: ReactNode;
-  /** Delay (seconds) before the reveal begins. */
   delay?: number;
-  /** Vertical offset (px) the element rises from. */
   y?: number;
   className?: string;
 };
 
-/**
- * Scroll-triggered reveal with a cinematic 3D entrance: content tilts up
- * out of depth — like a card rising from below the fold — as it enters
- * the viewport. Respects the user's reduced-motion preference.
- */
+// Scroll-triggered reveal; respects reduced motion.
 export default function Reveal({
   children,
   delay = 0,

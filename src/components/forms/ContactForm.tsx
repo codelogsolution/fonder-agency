@@ -5,8 +5,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Check, Send, AlertCircle } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-/* ── styling atoms ────────────────────────────────────────────── */
-
 const inputBaseClasses =
   "h-11 w-full rounded-xl bg-surface-2/60 px-4 text-sm text-foreground placeholder:text-muted/60 transition-all duration-300 focus:outline-none";
 
@@ -29,8 +27,6 @@ const serviceOptions = [
 ];
 
 const ease: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
-
-/* ── types & validation ───────────────────────────────────────── */
 
 type FormField = "name" | "email" | "service" | "website" | "message";
 
@@ -76,7 +72,7 @@ const validateField = (field: FormField, value: string): string | undefined => {
   }
 };
 
-/** High-ticket onboarding form — wire `handleSubmit` to an API route / CRM when ready. */
+// Client-side validation only; wire `handleSubmit` to an API route when ready.
 export default function ContactForm({ className }: { className?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({

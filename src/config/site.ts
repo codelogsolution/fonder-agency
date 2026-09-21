@@ -1,7 +1,4 @@
-/**
- * Site-wide configuration and content data.
- * Single source of truth for branding, navigation, and section content.
- */
+// Site-wide configuration and content data.
 import {
   Code2,
   FileText,
@@ -33,7 +30,6 @@ export const siteConfig = {
     { label: "Work", href: "/work" },
     { label: "Contact", href: "/contact" },
   ] satisfies NavItem[],
-  /** Year the agency was founded — surfaced in the footer for trust. */
   established: 2022,
   socials: [
     { label: "LinkedIn", href: "https://www.linkedin.com", icon: "linkedin" },
@@ -62,18 +58,13 @@ export type SocialLink = {
 export type HeroSlide = {
   word: string;
   tagline: string;
-  /** Canonical service page this slide points at. */
   service: string;
   href: string;
   stat: string;
   caption: string;
 };
 
-/**
- * Hero banner slides — synced with the typewriter words.
- * Rotates through Fonder's actual services so a first-time visitor
- * instantly knows what the agency does.
- */
+// Hero slides, synced with the hero typewriter words.
 export const heroSlides: HeroSlide[] = [
   {
     word: "websites",
@@ -133,7 +124,6 @@ export const heroSlides: HeroSlide[] = [
   },
 ];
 
-/** Services orbiting the hero badge — the full Fonder offering at a glance. */
 export const heroServices: { label: string; href: string; icon: LucideIcon }[] =
   [
     { label: "Web Development", href: "/services/web-dev", icon: Code2 },
@@ -145,7 +135,6 @@ export const heroServices: { label: string; href: string; icon: LucideIcon }[] =
     { label: "Content Writing", href: "/services/content", icon: FileText },
   ];
 
-/** Aggregate numbers surfaced on the work page. */
 export const impactStats: Stat[] = [
   { value: "60+", label: "Projects delivered" },
   { value: "96%", label: "Client retention" },
@@ -161,16 +150,14 @@ export type ServicePage = {
   tagline: string;
   description: string;
   icon: LucideIcon;
-  /** Hero visual for the sub-page (remote image, pre-configured in next.config). */
   image: string;
   imageAlt: string;
   features: string[];
   stats: Stat[];
-  /** Structured delivery process, e.g. Audit → Strategy → Execution → Optimization. */
   process: ProcessStep[];
 };
 
-/** Physical service detail pages: /services/[slug]. */
+// /services/[slug] pages.
 export const servicePages: ServicePage[] = [
   {
     slug: "web-dev",
@@ -462,15 +449,9 @@ export const servicePages: ServicePage[] = [
   },
 ];
 
-/** Look up a service detail page by its slug. */
 export function getServicePage(slug: string): ServicePage | undefined {
   return servicePages.find((service) => service.slug === slug);
 }
-
-/* ==========================================================================
-   Service preview cards — used in ServicePreview.tsx.
-   Each service page passes its own preview items.
-   ========================================================================== */
 
 export interface ServicePreviewItem {
   id: string;
@@ -483,7 +464,7 @@ export interface ServicePreviewItem {
 
 type PreviewSeed = [ServicePreviewItem["kind"], string, string, string[]];
 
-/** Fictional demo content, not client results or performance claims. */
+// Fictional demo content, not real client data.
 const servicePreviewSeeds: Record<string, PreviewSeed[]> = {
   "app-dev": [
     ["app", "Daily rhythm", "Wellness app", ["Good morning, Alex", "Your daily goal · 6,000 steps", "Morning stretch · 12 minutes", "Mindful break · 5 minutes", "Evening walk · 20 minutes"]],
@@ -549,7 +530,7 @@ export type CaseStudy = {
   metrics: CaseMetric[];
 };
 
-/** Marketing/development case studies for the /work page. */
+// /work case studies.
 export const caseStudies: CaseStudy[] = [
   {
     client: "Aurelia",
@@ -579,38 +560,10 @@ export const caseStudies: CaseStudy[] = [
       { label: "Sales pipeline multiplier", value: 2.1, decimals: 1, displayValue: "2.1×", explanation: "The reported sales pipeline reached 2.1 times its earlier level. Pipeline is potential business, not completed sales." },
     ],
   },
-  // {
-  //   client: "Fintech Platform",
-  //   period: "2025 · 6-month engagement",
-  //   title:
-  //     "Rebuilt a payments dashboard now handling 320k+ transactions a month",
-  //   summary:
-  //     "Re-architected the core dashboard on Next.js with streaming data, cutting report times from minutes to seconds.",
-  //   services: ["Web Development", "Design Systems"],
-  //   metrics: [
-  //     { label: "Monthly transactions", value: 320, suffix: "k+" },
-  //     { label: "LCP", value: 1.2, decimals: 1, suffix: "s" },
-  //     { label: "Uptime", value: 99.9, decimals: 1, suffix: "%" },
-  //   ],
-  // },
-  // {
-  //   client: "Fitness App",
-  //   period: "2023 · 12-month engagement",
-  //   title: "Scaled a fitness app to 38k installs with a 4.6★ store rating",
-  //   summary:
-  //     "Cross-platform rebuild, onboarding redesign, and an ASO program compounded installs while cutting churn.",
-  //   services: ["App Development", "ASO", "Lifecycle Email"],
-  //   metrics: [
-  //     { label: "Installs", value: 38, suffix: "k+" },
-  //     { label: "Store rating", value: 4.6, decimals: 1, suffix: "★" },
-  //     { label: "Churn", value: 14, prefix: "-", suffix: "%" },
-  //   ],
-  // },
 ];
 
 export type RecentWin = { metric: string; title: string; detail: string };
 
-/** Headline outcomes teased on the home page, deep-linking to /work. */
 export const recentWins: RecentWin[] = [
   {
     metric: "+41%",
@@ -635,9 +588,12 @@ export type Testimonial = {
   name: string;
   role: string;
   initials: string;
+  company: string;
+  sector: string;
+  metric: string;
+  metricLabel: string;
 };
 
-/** Client testimonials featured on the home page. */
 export const testimonials: Testimonial[] = [
   {
     quote:
@@ -645,6 +601,10 @@ export const testimonials: Testimonial[] = [
     name: "Aarav Mehta",
     role: "CEO, Aurelia · Client since 2023",
     initials: "AM",
+    company: "AURELIA",
+    sector: "E-commerce",
+    metric: "+41%",
+    metricLabel: "conversion lift after the storefront rebuild",
   },
   {
     quote:
@@ -652,6 +612,10 @@ export const testimonials: Testimonial[] = [
     name: "Sofia Reyes",
     role: "CMO, Vertex · Client since 2024",
     initials: "SR",
+    company: "VERTEX",
+    sector: "B2B SaaS",
+    metric: "+240%",
+    metricLabel: "organic traffic growth in the first six months",
   },
   {
     quote:
@@ -659,5 +623,31 @@ export const testimonials: Testimonial[] = [
     name: "Daniel Okafor",
     role: "CTO, FinFlow · Client since 2023",
     initials: "DO",
+    company: "FINFLOW",
+    sector: "Fintech",
+    metric: "320k",
+    metricLabel: "monthly transactions on the dashboard we rebuilt",
+  },
+  {
+    quote:
+      "The app felt sluggish before; now it opens in under a second and our store rating jumped to 4.6. Users actually leave five-star reviews now — that's how you know the work mattered.",
+    name: "Ravi Kumar",
+    role: "Head of Product, PulseFit · Client since 2024",
+    initials: "RK",
+    company: "PULSEFIT",
+    sector: "Fitness Tech",
+    metric: "38k+",
+    metricLabel: "app installs with a 4.6★ store rating",
+  },
+  {
+    quote:
+      "They rebuilt our checkout in two weeks and taught us how to test offers. Revenue per ad dollar went from 2.1× to 3.2× in a quarter — the clearest ROI I've seen from a rebuild.",
+    name: "Meera Sethi",
+    role: "Co-founder, CloudCart · Client since 2023",
+    initials: "MS",
+    company: "CLOUDCART",
+    sector: "E-commerce",
+    metric: "3.2×",
+    metricLabel: "revenue per ad dollar after checkout rebuild",
   },
 ];

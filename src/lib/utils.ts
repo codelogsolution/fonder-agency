@@ -1,6 +1,4 @@
-/**
- * Tiny class-name combiner (clsx-style, dependency-free).
- */
+// Class-name combiner.
 export function cn(
   ...classes: Array<string | number | false | null | undefined>
 ): string {

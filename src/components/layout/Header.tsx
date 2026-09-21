@@ -33,10 +33,7 @@ const mobileItem: Variants = {
   exit: { opacity: 0, x: -12, transition: { duration: 0.18 } },
 };
 
-/**
- * Route-aware nav link. The active route lights up in the primary
- * accent (#0284C7) with a persistent underline and glow dot.
- */
+// Route-aware nav link with active state.
 function NavLink({
   label,
   href,
@@ -98,7 +95,6 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const { scrollY } = useScroll();
 
-  /** Exact match for home, prefix match for nested routes (/services/*). */
   const isActive = (href: string) =>
     href === "/"
       ? pathname === "/"

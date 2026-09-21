@@ -5,21 +5,13 @@ import { motion } from "framer-motion";
 
 type SplitTextProps = {
   text: string;
-  /** Base delay (seconds) before the first word animates in. */
   delay?: number;
-  /** Per-word stagger (seconds). */
   stagger?: number;
-  /** Applied to the wrapper (layout) span. */
   className?: string;
-  /** Applied to each animated word span (e.g. "text-gradient"). */
   wordClassName?: string;
 };
 
-/**
- * Cinematic split-text: words slide up out of an overflow mask, staggered
- * left to right. The wrapper keeps the full sentence in the a11y tree via
- * aria-label while the individual word masks are hidden from AT.
- */
+// Words slide up out of an overflow mask, staggered left to right.
 function SplitText({
   text,
   delay = 0,

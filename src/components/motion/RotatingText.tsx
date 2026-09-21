@@ -5,24 +5,15 @@ import { cn } from "@/lib/utils";
 
 type RotatingTextProps = {
   words: string[];
-  /** Milliseconds per character while typing. */
   typeSpeed?: number;
-  /** Milliseconds per character while deleting. */
   deleteSpeed?: number;
-  /** Pause (ms) after a word is fully typed, before it starts deleting. */
   holdPause?: number;
-  /** Delay (ms) before the very first word starts typing. */
   delay?: number;
   className?: string;
-  /** Fires whenever the active word index advances (for syncing visuals). */
   onWordChange?: (index: number) => void;
 };
 
-/**
- * Classic typewriter cycle: one word types out letter by letter, holds on
- * screen, deletes letter by letter, then the next word takes its turn —
- * looping through all words forever. One word at a time, never cumulative.
- */
+// Typewriter cycle: type, hold, delete, next word.
 function RotatingText({
   words,
   typeSpeed = 95,

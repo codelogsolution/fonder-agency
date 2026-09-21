@@ -61,10 +61,7 @@ const pillars: Pillar[] = [
   },
 ];
 
-/**
- * The three execution pillars of the agency, presented as an alternating,
- * image-led layout with oversized index numerals.
- */
+// The three execution pillars, alternating image-led rows.
 export default function AboutPillars() {
   return (
     <section className="relative py-8 sm:py-14">

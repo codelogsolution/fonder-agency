@@ -6,16 +6,11 @@ import { cn } from "@/lib/utils";
 
 type MagneticProps = {
   children: ReactNode;
-  /** 0–1 — how strongly the content is pulled toward the cursor. */
   strength?: number;
   className?: string;
 };
 
-/**
- * Magnetic wrapper: content gravitates toward the cursor with a springy
- * pull and springs back to rest on mouse leave. Inert on touch devices
- * (no mouse events).
- */
+// Content gravitates toward the cursor; springs back on leave.
 export default function Magnetic({
   children,
   strength = 0.35,

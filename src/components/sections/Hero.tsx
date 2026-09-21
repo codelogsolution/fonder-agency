@@ -1,12 +1,12 @@
 "use client";
 import {
   AnimatePresence,
-  motion, useMotionTemplate, useMotionValue, useSpring, useTransform,
+  motion, useMotionValue, useReducedMotion, useSpring, useTransform,
 } from "framer-motion";
 import { ArrowRight, ChevronDown, Star } from "lucide-react";
 import Link from "next/link";
 import type { MouseEvent as ReactMouseEvent } from "react";
-import { useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import Button from "@/components/ui/Button";
 import SplitText from "@/components/motion/SplitText";
 import RotatingText from "@/components/motion/RotatingText";
@@ -14,54 +14,127 @@ import { heroServices, heroSlides } from "@/config/site";
 
 const ease: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 const heroWords = heroSlides.map((s) => s.word + ".");
+// Cursor decor lives on small fixed-size layers moved with transforms only,
+// to avoid full-viewport repaints on every pointer frame.
+const REVEAL_SIZE = 720;
+const REVEAL_RADIUS = REVEAL_SIZE / 2;
+const SPOTLIGHT_SIZE = 560;
+// Cursor decor starts once the hero intro settles.
+const CURSOR_START_DELAY = 1500;
+
 export default function Hero() {
   const [activeSlide, setActiveSlide] = useState(0);
+  const [cursorReady, setCursorReady] = useState(false);
+  const prefersReducedMotion = useReducedMotion();
   const mx = useMotionValue(0);
   const my = useMotionValue(0);
   const glowX = useSpring(useTransform(mx, [-0.5, 0.5], [-24, 24]), { stiffness: 50, damping: 20 });
   const glowY = useSpring(useTransform(my, [-0.5, 0.5], [-16, 16]), { stiffness: 50, damping: 20 });
   const spotX = useSpring(-600, { stiffness: 80, damping: 25 });
   const spotY = useSpring(-600, { stiffness: 80, damping: 25 });
-  const gridMask = useMotionTemplate`radial-gradient(360px circle at ${spotX}px ${spotY}px, black 0%, transparent 72%)`;
-  const spotlightBg = useMotionTemplate`radial-gradient(280px circle at ${spotX}px ${spotY}px, rgba(2,132,199,0.14), transparent 70%)`;
-  const handleMouseMove = (event: ReactMouseEvent<HTMLElement>) => {
-    mx.set(event.clientX / window.innerWidth - 0.5);
-    my.set(event.clientY / window.innerHeight - 0.5);
-    spotX.set(event.clientX);
-    spotY.set(event.clientY);
-  };
+  // Keeps the grid anchored to the page while the window follows the cursor.
+  const gridX = useTransform(spotX, (value) => REVEAL_RADIUS - value);
+  const gridY = useTransform(spotY, (value) => REVEAL_RADIUS - value);
+  const frameRef = useRef<number | null>(null);
+  const pointerRef = useRef({ x: -600, y: -600, nx: 0, ny: 0 });
+  const sectionRef = useRef<HTMLElement>(null);
+
+  // Coalesce pointer writes to one per frame.
+  const flushPointer = useCallback(() => {
+    frameRef.current = null;
+    const { x, y, nx, ny } = pointerRef.current;
+    // Convert viewport coords to section-local so the reveal tracks the cursor.
+    const rect = sectionRef.current?.getBoundingClientRect();
+    mx.set(nx);
+    my.set(ny);
+    spotX.set(x - (rect?.left ?? 0));
+    spotY.set(y - (rect?.top ?? 0));
+  }, [mx, my, spotX, spotY]);
+
+  const handleMouseMove = useCallback(
+    (event: ReactMouseEvent<HTMLElement>) => {
+      pointerRef.current = {
+        x: event.clientX,
+        y: event.clientY,
+        nx: event.clientX / window.innerWidth - 0.5,
+        ny: event.clientY / window.innerHeight - 0.5,
+      };
+      frameRef.current ??= requestAnimationFrame(flushPointer);
+    },
+    [flushPointer],
+  );
+
+  useEffect(
+    () => () => {
+      if (frameRef.current !== null) cancelAnimationFrame(frameRef.current);
+    },
+    [],
+  );
+
+  // Track the pointer only on fine-pointer devices, after the intro settles.
+  useEffect(() => {
+    if (prefersReducedMotion) return;
+    if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
+    const timer = setTimeout(() => setCursorReady(true), CURSOR_START_DELAY);
+    return () => clearTimeout(timer);
+  }, [prefersReducedMotion]);
+
   const slide = heroSlides[activeSlide];
   return (
-    <section id="home" onMouseMove={handleMouseMove} className="relative flex min-h-screen items-center overflow-hidden bg-background">
+    <section
+      ref={sectionRef}
+      id="home"
+      onMouseMove={cursorReady ? handleMouseMove : undefined}
+      className="relative flex min-h-screen items-center overflow-hidden bg-background"
+    >
       <div aria-hidden className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_70%_60%_at_50%_35%,black_40%,transparent_100%)]" />
-      <motion.div aria-hidden style={{ maskImage: gridMask, WebkitMaskImage: gridMask }} className="pointer-events-none absolute inset-0 hidden bg-grid-accent lg:block" />
-      <motion.div aria-hidden style={{ x: glowX, y: glowY }} className="pointer-events-none absolute inset-0">
-        <div className="absolute -top-52 left-1/2 h-[560px] w-[880px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px] animate-pulse-glow" />
+      <div aria-hidden className="pointer-events-none absolute left-0 top-0 hidden lg:block">
+        <div className="-translate-x-1/2 -translate-y-1/2">
+          <motion.div
+            style={{ x: spotX, y: spotY, width: REVEAL_SIZE, height: REVEAL_SIZE }}
+            className="grid-reveal-mask relative overflow-hidden will-change-transform"
+          >
+            <motion.div
+              style={{ x: gridX, y: gridY }}
+              className="bg-grid-accent h-full w-full will-change-transform"
+            />
+          </motion.div>
+        </div>
+      </div>
+      <motion.div aria-hidden style={{ x: glowX, y: glowY }} className="pointer-events-none absolute inset-0 will-change-transform">
+        <div className="absolute -top-52 left-1/2 h-[560px] w-[880px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px] animate-pulse-glow will-change-[transform,opacity]" />
         <motion.div
-          animate={{ x: [0, 70, -45, 0], y: [0, -35, 28, 0], scale: [1, 1.08, 0.96, 1] }}
+          animate={{ x: [0, 70, -45, 0], y: [0, -35, 28, 0] }}
           transition={{ duration: 24, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -left-44 top-1/4 h-[460px] w-[460px] rounded-full bg-primary/[0.09] blur-[130px]"
+          className="absolute -left-44 top-1/4 h-[460px] w-[460px] rounded-full bg-primary/[0.09] blur-[130px] will-change-transform"
         />
         <motion.div
-          animate={{ x: [0, -60, 50, 0], y: [0, 40, -28, 0], scale: [1, 1.1, 0.94, 1] }}
+          animate={{ x: [0, -60, 50, 0], y: [0, 40, -28, 0] }}
           transition={{ duration: 28, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute -right-36 top-1/3 hidden h-[420px] w-[420px] rounded-full bg-[#7c3aed]/[0.09] blur-[140px] lg:block"
+          className="absolute -right-36 top-1/3 hidden h-[420px] w-[420px] rounded-full bg-[#7c3aed]/[0.09] blur-[140px] will-change-transform lg:block"
         />
         <motion.div
-          animate={{ scale: [1, 1.18, 1], opacity: [0.45, 0.85, 0.45] }}
+          animate={{ opacity: [0.45, 0.85, 0.45], y: [0, -14, 0] }}
           transition={{ duration: 10, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute left-1/2 top-[6%] h-60 w-[600px] -translate-x-1/2 rounded-full bg-[#38bdf8]/[0.1] blur-[110px]"
+          className="absolute left-1/2 top-[6%] h-60 w-[600px] -translate-x-1/2 rounded-full bg-[#38bdf8]/[0.1] blur-[110px] will-change-[transform,opacity]"
         />
         <motion.div
           animate={{ x: [0, 35, -30, 0], y: [0, 24, -20, 0] }}
           transition={{ duration: 19, repeat: Infinity, ease: "easeInOut" }}
-          className="absolute bottom-[-8%] left-[22%] hidden h-[300px] w-[440px] rounded-full bg-[#0ea5e9]/[0.07] blur-[130px] lg:block"
+          className="absolute bottom-[-8%] left-[22%] hidden h-[300px] w-[440px] rounded-full bg-[#0ea5e9]/[0.07] blur-[130px] will-change-transform lg:block"
         />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
         <div className="absolute left-1/2 top-[12%] h-40 w-[560px] -translate-x-1/2 rounded-full border border-primary/10 blur-[1px]" />
         <div className="absolute left-1/2 top-[16%] h-28 w-[420px] -translate-x-1/2 rounded-full border border-primary/[0.07]" />
       </motion.div>
-      <motion.div aria-hidden style={{ background: spotlightBg }} className="pointer-events-none absolute inset-0 hidden lg:block" />
+      <div aria-hidden className="pointer-events-none absolute left-0 top-0 hidden lg:block">
+        <div className="-translate-x-1/2 -translate-y-1/2">
+          <motion.div
+            style={{ x: spotX, y: spotY, width: SPOTLIGHT_SIZE, height: SPOTLIGHT_SIZE }}
+            className="bg-spotlight will-change-transform"
+          />
+        </div>
+      </div>
 
       <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)] lg:gap-10 lg:px-8 lg:pt-32">
         <div className="max-w-3xl lg:max-w-none">
@@ -207,7 +280,7 @@ export default function Hero() {
           <motion.div
             animate={{ y: [0, -10, 0] }}
             transition={{ duration: 8, repeat: Infinity, ease: "easeInOut" }}
-            className="relative w-full rounded-3xl border border-border-subtle bg-surface/80 p-5 shadow-[0_24px_80px_-24px_rgba(2,132,199,0.35)] backdrop-blur-xl"
+            className="will-change-transform relative w-full rounded-3xl border border-border-subtle bg-surface/85 p-5 shadow-[0_24px_80px_-24px_rgba(2,132,199,0.35)]"
           >
             <div className="flex items-start justify-between gap-3">
               <div>

@@ -6,10 +6,7 @@ import { InstagramIcon, LinkedInIcon } from "@/components/ui/BrandIcons";
 import NewsletterForm from "@/components/layout/NewsletterForm";
 import BrandMark from "@/components/ui/BrandMark";
 
-/**
- * Dark-contrast footer: re-scopes the design tokens so every token-driven
- * class inside renders on a deep navy corporate surface.
- */
+// Re-scopes design tokens for the dark footer surface.
 const footerTokens = {
   "--foreground": "#f1f5f9",
   "--muted": "#94a3b8",

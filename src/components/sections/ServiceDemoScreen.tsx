@@ -1,7 +1,7 @@
 import type { ServicePreviewItem } from "@/config/site";
 import styles from "./ServicePreview.module.css";
 
-/** Illustrative screens: no external images, links, or client metrics. */
+// Illustrative screens: no external images, links, or client metrics.
 export default function DemoScreen({ item }: { item: ServicePreviewItem }) {
   return (
     <div className={`${styles.screen} space-y-6 bg-[#10131d] p-5 text-white`}>

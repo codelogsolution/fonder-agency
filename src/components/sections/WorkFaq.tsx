@@ -3,7 +3,7 @@
 import { useId, useState } from "react";
 import { ChevronDown } from "lucide-react";
 
-/** A single-open accordion with intrinsic-height transitions and keyboard controls. */
+// A single-open accordion with intrinsic-height transitions and keyboard controls.
 export default function WorkFaq({ items }: { items: { question: string; answer: string }[] }) {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const id = useId();
