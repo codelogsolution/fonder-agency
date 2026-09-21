@@ -30,11 +30,12 @@
   --color-muted: var(--muted);
 
   /* Typography — `--font-jakarta` comes from next/font in app/layout.tsx. */
-  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, -apple-system,
-    "Segoe UI", sans-serif;
+  --font-sans:
+    var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
 
-  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas,
-    "Liberation Mono", monospace;
+  --font-mono:
+    ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
 
   /* Global responsive breakpoints */
   --breakpoint-sm: 40rem; /* 640px  */
@@ -79,11 +80,17 @@
 html {
   color-scheme: light;
   scroll-behavior: smooth;
+  overflow-x: hidden;
+  overflow-x: clip;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  html { scroll-behavior: auto; }
-  *, *::before, *::after {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
@@ -101,6 +108,7 @@ body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  overflow-x: clip;
 }
 
 ::selection {
@@ -126,11 +134,8 @@ body {
 
 /* Accent blueprint grid — revealed under the cursor in the hero */
 @utility bg-grid-accent {
-  background-image: linear-gradient(
-      to right,
-      rgba(2, 132, 199, 0.4) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(to right, rgba(2, 132, 199, 0.4) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(2, 132, 199, 0.4) 1px, transparent 1px);
   background-size: 56px 56px;
 }
@@ -188,13 +193,8 @@ body {
 
 /* Subtle blueprint grid backdrop */
 @utility bg-grid {
-  background-image: linear-gradient(
-      to right,
-      rgba(11, 18, 32, 0.06) 1px,
-      transparent 1px
-    ),
+  background-image:
+    linear-gradient(to right, rgba(11, 18, 32, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(11, 18, 32, 0.06) 1px, transparent 1px);
   background-size: 56px 56px;
 }
-
-
