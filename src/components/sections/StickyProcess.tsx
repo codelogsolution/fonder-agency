@@ -599,7 +599,7 @@ function PinnedProcess() {
       style={{ height: PHASE_TRACK }}
       data-process-track
     >
-      <div className="sticky top-0 flex min-h-screen items-center py-25">
+      <div className="sticky top-0 flex min-h-screen items-center py-24">
         <div className={`${PANEL_WIDE} w-full`}>
           <SectionHeader />
 

@@ -402,7 +402,7 @@ const appCards = [
 
 export default function AppShowcase() {
   return (
-    <section aria-labelledby="app-showcase" className="relative overflow-hidden py-16 sm:py-20">
+    <section aria-labelledby="app-showcase" className="relative overflow-hidden py-12 sm:py-16">
       <div
         aria-hidden
         className="absolute -top-24 left-1/2 h-72 w-[720px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]"

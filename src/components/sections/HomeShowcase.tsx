@@ -14,17 +14,16 @@ const ROTATE_MS = 5500;
 
 export default function HomeShowcase() {
   const [active, setActive] = useState(0);
-  const [paused, setPaused] = useState(false);
   const prefersReducedMotion = useReducedMotion();
   const slide = heroSlides[active % heroSlides.length];
 
   useEffect(() => {
-    if (prefersReducedMotion || paused) return;
+    if (prefersReducedMotion) return;
     const timer = setInterval(() => {
       setActive((current) => (current + 1) % heroSlides.length);
     }, ROTATE_MS);
     return () => clearInterval(timer);
-  }, [prefersReducedMotion, paused]);
+  }, [prefersReducedMotion]);
 
   const go = (direction: 1 | -1) => {
     setActive(
@@ -35,7 +34,7 @@ export default function HomeShowcase() {
   return (
     <section
       aria-labelledby="home-showcase"
-      className="relative overflow-hidden py-16 sm:py-20"
+      className="relative overflow-hidden py-12 sm:py-16"
     >
       <div
         aria-hidden
@@ -53,17 +52,11 @@ export default function HomeShowcase() {
             Websites, apps &amp; growth — watch it all in one slider
           </h2>
           <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-            A live taste of every discipline. It auto-plays slowly — hover to
-            pause, tap a heading to open that service page.
+            A live taste of every discipline. It auto-plays slowly — tap a
+            heading to open that service page.
           </p>
         </Reveal>
-        <div
-          className="mt-12 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onFocus={() => setPaused(true)}
-          onBlur={() => setPaused(false)}
-        >
+        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
           <div className="min-h-[340px] sm:min-h-[320px]">
             <AnimatePresence mode="wait">
               <motion.div
@@ -131,11 +124,7 @@ export default function HomeShowcase() {
                       {index === active && (
                         <span
                           className={cn("block h-full rounded-full bg-primary", styles.homeProgress)}
-                          style={{
-                            animationDuration: `${ROTATE_MS}ms`,
-                            animationPlayState:
-                              paused || prefersReducedMotion ? "paused" : "running",
-                          }}
+                          style={{ animationDuration: `${ROTATE_MS}ms` }}
                         />
                       )}
                       {index < active && <span className="block h-full w-full bg-primary/40" />}
@@ -158,7 +147,7 @@ export default function HomeShowcase() {
               </motion.div>
             </AnimatePresence>
             <p className="mt-3 text-center text-[11px] text-muted">
-              Live concept preview · hover to pause · heading opens {slide.service}
+              Live concept preview · heading opens {slide.service}
             </p>
           </Reveal>
         </div>
