@@ -148,12 +148,12 @@ export default function Footer() {
             © {siteConfig.established} {siteConfig.name}. All rights reserved.
           </p>
           <div className="flex gap-6 text-sm text-muted">
-            <a href="#" className="transition-colors hover:text-primary">
+            <Link href="/privacy" className="transition-colors hover:text-primary">
               Privacy Policy
-            </a>
-            <a href="#" className="transition-colors hover:text-primary">
+            </Link>
+            <Link href="/terms" className="transition-colors hover:text-primary">
               Terms of Service
-            </a>
+            </Link>
           </div>
         </div>
       </div>

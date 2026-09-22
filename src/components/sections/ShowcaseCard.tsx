@@ -17,7 +17,7 @@ type ShowcaseCardProps = {
 export default function ShowcaseCard({
   eyebrow,
   title,
-  note = "Concept preview · hover to pause",
+  note = "",
   duration = 52,
   height = 510,
   top,

@@ -543,7 +543,7 @@ const defaultPreviewCopy: ServicePreviewCopy = {
   heading: "What we build,",
   accent: "in action",
   description: "Concept screens for this service — headers, panels and data — scrolling slowly. Hover a card to pause.",
-  cardNote: "Concept preview · hover to pause",
+  cardNote: "",
 };
 
 export function getServicePreviewCopy(slug: string): ServicePreviewCopy {
