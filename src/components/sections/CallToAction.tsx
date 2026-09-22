@@ -4,7 +4,7 @@ import Reveal from "@/components/motion/Reveal";
 
 export default function CallToAction() {
   return (
-    <section id="contact" className="relative py-24 sm:py-32">
+    <section id="contact" className="relative py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-border-subtle bg-gradient-to-b from-surface to-surface-2 px-6 py-16 text-center sm:px-16 sm:py-24">

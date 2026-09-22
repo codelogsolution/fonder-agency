@@ -35,7 +35,7 @@ const pillars: Pillar[] = [
 
 export default function Pillars() {
   return (
-    <section className="relative py-24 sm:py-32">
+    <section className="relative py-16 sm:py-20">
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal className="max-w-2xl">
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">

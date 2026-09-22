@@ -464,6 +464,63 @@ export interface ServicePreviewItem {
 
 type PreviewSeed = [ServicePreviewItem["kind"], string, string, string[]];
 
+export interface ServicePreviewCopy {
+  eyebrow: string;
+  heading: string;
+  accent: string;
+  description: string;
+  cardNote: string;
+}
+
+// Section copy for each service page's preview section, so no two service pages
+// read the same.
+const servicePreviewCopy: Record<string, ServicePreviewCopy> = {
+  seo: {
+    eyebrow: "Search performance",
+    heading: "Where growth",
+    accent: "compounds",
+    description:
+      "Rankings, crawl health and topic coverage — the three views a search programme is run from. Hover a card to pause it.",
+    cardNote: "Reporting concept · hover to pause",
+  },
+  branding: {
+    eyebrow: "Identity system",
+    heading: "One brand,",
+    accent: "every surface",
+    description:
+      "Marks, palettes, type scales and applied work — how an identity is built and then carried across print and product.",
+    cardNote: "Identity concept · hover to pause",
+  },
+  marketing: {
+    eyebrow: "Campaign lifecycle",
+    heading: "From brief to",
+    accent: "booked revenue",
+    description:
+      "Campaign creative, lifecycle email and the planning board behind them — the working views a growth team lives in.",
+    cardNote: "Campaign concept · hover to pause",
+  },
+  content: {
+    eyebrow: "Editorial system",
+    heading: "Copy that earns",
+    accent: "attention",
+    description:
+      "Journals, landing pages and newsletters — the formats we write in, from first draft to published issue.",
+    cardNote: "Editorial concept · hover to pause",
+  },
+};
+
+const defaultPreviewCopy: ServicePreviewCopy = {
+  eyebrow: "Inside the work",
+  heading: "What we build,",
+  accent: "in action",
+  description: "Concept screens for this service — headers, panels and data — scrolling slowly. Hover a card to pause.",
+  cardNote: "Concept preview · hover to pause",
+};
+
+export function getServicePreviewCopy(slug: string): ServicePreviewCopy {
+  return servicePreviewCopy[slug] ?? defaultPreviewCopy;
+}
+
 // Fictional demo content, not real client data.
 const servicePreviewSeeds: Record<string, PreviewSeed[]> = {
   "app-dev": [
@@ -498,7 +555,7 @@ const servicePreviewSeeds: Record<string, PreviewSeed[]> = {
   ],
 };
 
-export function useServicePreviewItems(slug: string): ServicePreviewItem[] {
+export function getServicePreviewItems(slug: string): ServicePreviewItem[] {
   if (!getServicePage(slug)) return [];
   return (servicePreviewSeeds[slug] ?? []).map(([kind, title, subtitle, entries], index) => ({
     id: `${slug}-${index}`,

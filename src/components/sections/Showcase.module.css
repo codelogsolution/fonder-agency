@@ -1,0 +1,95 @@
+/* Showcase auto-scroll. --showcase-h is set per card by <ShowcaseCard>. */
+.viewport {
+  height: var(--showcase-h, 440px);
+  overflow: hidden;
+}
+
+/* Column flex keeps the two content copies stacked with no margin collapsing,
+   so the track is always exactly 2x one copy and -50% lands on the second. */
+.track {
+  display: flex;
+  flex-direction: column;
+  animation-name: showcase-scroll;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+/* One copy of the content, never shorter than the window. */
+.copy {
+  display: flow-root;
+  flex: 0 0 auto;
+  min-height: var(--showcase-h, 440px);
+}
+
+/* Hover or keyboard focus pauses the scroll. */
+.card:hover .track,
+.card:focus-within .track {
+  animation-play-state: paused;
+}
+@keyframes showcase-scroll {
+  to {
+    transform: translateY(-50%);
+  }
+}
+
+/* Hero slider: 3 slides sharing a 9s cycle, staggered by 3s. */
+.slide {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: slide-cycle 9s linear infinite;
+}
+.slide:nth-child(2) {
+  animation-delay: 3s;
+}
+.slide:nth-child(3) {
+  animation-delay: 6s;
+}
+.dot {
+  animation: slide-cycle 9s linear infinite;
+}
+.dot:nth-child(2) {
+  animation-delay: 3s;
+}
+.dot:nth-child(3) {
+  animation-delay: 6s;
+}
+@keyframes slide-cycle {
+  0%,
+  100% {
+    opacity: 0;
+  }
+  4% {
+    opacity: 1;
+  }
+  30% {
+    opacity: 1;
+  }
+  36% {
+    opacity: 0;
+  }
+}
+
+/* Reduced motion: stop the scroll and sliders, allow manual scrolling instead. */
+@media (prefers-reduced-motion: reduce) {
+  .track {
+    animation: none;
+  }
+  .slide,
+  .dot {
+    animation: none;
+  }
+  .slide:nth-child(2),
+  .slide:nth-child(3) {
+    opacity: 0;
+  }
+  .viewport {
+    overflow-y: auto;
+  }
+  .duplicate {
+    display: none;
+  }
+  .copy {
+    min-height: 0;
+  }
+}

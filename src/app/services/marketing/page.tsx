@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
+import dynamic from "next/dynamic";
 import ServiceDetail from "@/components/sections/ServiceDetail";
-import ServicePreview from "@/components/sections/ServicePreview";
+import { ShowcaseFallback } from "@/components/sections/ShowcaseCard";
+
+const ServicePreview = dynamic(() => import("@/components/sections/ServicePreview"), {
+  loading: () => <ShowcaseFallback cards={3} height={510} />,
+});
 
 export const metadata: Metadata = {
   title: "Digital Marketing",
