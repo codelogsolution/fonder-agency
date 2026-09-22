@@ -4,7 +4,6 @@ import {
   FileText,
   Megaphone,
   Palette,
-  PenTool,
   Search,
   Smartphone,
   type LucideIcon,
@@ -57,70 +56,101 @@ export type SocialLink = {
 
 export type HeroSlide = {
   word: string;
+  long: string;
   tagline: string;
   service: string;
   href: string;
   stat: string;
   caption: string;
+  blurb?: string;
+  label?: string;
 };
 
 // Hero slides, synced with the hero typewriter words.
 export const heroSlides: HeroSlide[] = [
   {
-    word: "websites",
+        word: "websites",
+    long: "high-converting websites",
     tagline: "that turn visitors into customers.",
     service: "Web Development",
     href: "/services/web-dev",
     stat: "28+",
     caption: "Websites shipped",
+    blurb:
+      "Fonder builds fast, conversion-focused websites that load in a flash and guide visitors to book, buy or sign up.",
+    label: "Websites",
   },
   {
-    word: "apps",
+        word: "apps",
+    long: "beautiful mobile apps",
     tagline: "your customers love to use.",
     service: "App Development",
     href: "/services/app-dev",
     stat: "35k+",
     caption: "App installs shipped",
+    blurb:
+      "Native-quality apps shipped weekly — iOS and Android from a single React Native codebase.",
+    label: "Apps",
   },
   {
-    word: "rankings",
+        word: "rankings",
+    long: "search rankings",
     tagline: "that compound month after month.",
     service: "SEO",
     href: "/services/seo",
     stat: "2.6x",
     caption: "Avg. traffic growth",
+    blurb:
+      "Technical + content SEO that compounds: clean architecture, fast pages and keyword-rich content.",
+    label: "SEO",
   },
   {
-    word: "campaigns",
+        word: "campaigns",
+    long: "growth campaigns",
     tagline: "that bring leads every week.",
     service: "Social Marketing",
     href: "/services/marketing",
     stat: "2.8x",
     caption: "Avg. ROAS",
+    blurb:
+      "Full-funnel campaigns across Meta, Google and email that turn browsers into paying customers.",
+    label: "Marketing",
   },
   {
-    word: "brands",
+        word: "brands",
+    long: "memorable brands",
     tagline: "people remember & trust.",
     service: "Branding",
     href: "/services/branding",
     stat: "9",
     caption: "Brands launched",
+    blurb:
+      "Brand foundations — visual identity, voice and design system — built to stand out and last.",
+    label: "Branding",
   },
   {
-    word: "interfaces",
+        word: "interfaces",
+    long: "intuitive interfaces",
     tagline: "that users understand at first click.",
     service: "UI/UX Design",
     href: "/services/branding",
     stat: "120+",
     caption: "Design assets shipped",
+    blurb:
+      "Pixel-perfect interfaces and prototypes designed for clarity, not clutter — tested with real users.",
+    label: "Design",
   },
   {
-    word: "content",
+        word: "content",
+    long: "effective content",
     tagline: "that ranks, engages & sells.",
     service: "Content Writing",
     href: "/services/content",
     stat: "48k",
     caption: "Monthly readers",
+    blurb:
+      "Content strategy, SEO copy and long-form stories that rank in Google and convert readers into leads.",
+    label: "Content",
   },
 ];
 
@@ -131,7 +161,6 @@ export const heroServices: { label: string; href: string; icon: LucideIcon }[] =
     { label: "SEO", href: "/services/seo", icon: Search },
     { label: "Social Marketing", href: "/services/marketing", icon: Megaphone },
     { label: "Branding", href: "/services/branding", icon: Palette },
-    { label: "UI/UX Design", href: "/services/branding", icon: PenTool },
     { label: "Content Writing", href: "/services/content", icon: FileText },
   ];
 
@@ -167,7 +196,7 @@ export const servicePages: ServicePage[] = [
       "From marketing sites to complex platforms, we engineer with Next.js and modern tooling — type-safe, tested, and tuned to Core Web Vitals.",
     icon: Code2,
     image:
-      "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1461749280684.webp",
     imageAlt: "Developer writing code across dual monitors",
     features: [
       "Next.js (App Router) architecture",
@@ -215,7 +244,7 @@ export const servicePages: ServicePage[] = [
       "We design and build iOS and Android experiences your users love to open — one codebase, native polish, and release pipelines that ship weekly.",
     icon: Smartphone,
     image:
-      "https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1512941937669.webp",
     imageAlt: "Smartphone running a mobile application",
     features: [
       "React Native & Expo expertise",
@@ -263,7 +292,7 @@ export const servicePages: ServicePage[] = [
       "Technical SEO and content systems that compound: we fix the foundations, target commercial intent, and report on pipeline — not vanity rankings.",
     icon: Search,
     image:
-      "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1460925895917.webp",
     imageAlt: "Analytics dashboard with growth charts on a laptop",
     features: [
       "Technical audits & Core Web Vitals fixes",
@@ -311,7 +340,7 @@ export const servicePages: ServicePage[] = [
       "Full-funnel campaigns across paid search, social, and lifecycle email — creative that stops the scroll, targeting that finds buyers.",
     icon: Megaphone,
     image:
-      "https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1552664730.webp",
     imageAlt: "Marketing analytics workspace with campaign charts",
     features: [
       "Paid search & social campaign management",
@@ -357,9 +386,9 @@ export const servicePages: ServicePage[] = [
     tagline: "Copy that converts, content that compounds.",
     description:
       "Direct-response copy and editorial engines — from landing pages to full content calendars, every word is written to move a metric.",
-    icon: PenTool,
+    icon: FileText,
     image:
-      "https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1434030216411.webp",
     imageAlt: "Writer drafting copy in a notebook",
     features: [
       "Direct-response landing page copy",
@@ -407,7 +436,7 @@ export const servicePages: ServicePage[] = [
       "Logo to design system — distinct visual identities engineered to signal premium before a single word is read.",
     icon: Palette,
     image:
-      "https://images.unsplash.com/photo-1561070791-2526d30994b5?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1561070791.webp",
     imageAlt: "Designer's desk with color swatches and brand sketches",
     features: [
       "Logo & visual identity systems",

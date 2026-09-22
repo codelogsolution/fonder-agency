@@ -14,7 +14,7 @@ import ShowcaseCard from "@/components/sections/ShowcaseCard";
 import { cn } from "@/lib/utils";
 import styles from "@/components/sections/Showcase.module.css";
 
-function BrowserBar({ url }: { url: string }) {
+export function BrowserBar({ url }: { url: string }) {
   return (
     <div className="flex items-center gap-2 border-b border-slate-200 bg-slate-50 px-4 py-2.5">
       <span aria-hidden className="h-2.5 w-2.5 rounded-full bg-red-400" />
@@ -120,7 +120,7 @@ function SiteFooter({ brand, columns }: { brand: string; columns: { heading: str
   );
 }
 
-function AureliaPage() {
+export function AureliaPage() {
   const products = [
     { emoji: "🧴", name: "Glow serum", price: "$38", tint: "bg-amber-50" },
     { emoji: "🧣", name: "Linen scarf", price: "$52", tint: "bg-rose-50" },
@@ -204,7 +204,7 @@ function AureliaPage() {
   );
 }
 
-function OrbitPage() {
+export function OrbitPage() {
   const steps = [
     { icon: Kanban, name: "Plan", desc: "Boards & sprints", tint: "bg-sky-50 text-sky-600" },
     { icon: Users, name: "Assign", desc: "Balanced workloads", tint: "bg-violet-50 text-violet-600" },

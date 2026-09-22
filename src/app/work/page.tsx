@@ -11,7 +11,6 @@ export const metadata = {
 };
 
 export default function WorkPage() {
-  // Omit the ambiguous ROI multiplier until its calculation is confirmed.
   const overviewStats = impactStats.filter((stat) => stat.label !== "Avg. ROI uplift");
 
   return (

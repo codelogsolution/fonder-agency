@@ -11,7 +11,6 @@ type CountUpProps = {
   className?: string;
 };
 
-// Counts up to `to` with a spring when scrolled into view.
 export default function CountUp({
   to,
   decimals = 0,

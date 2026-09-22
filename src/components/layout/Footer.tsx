@@ -143,7 +143,6 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Copyright bar */}
         <div className="mt-16 flex flex-col items-center justify-between gap-4 border-t border-border-subtle pt-8 sm:flex-row">
           <p className="text-sm text-muted">
             © {siteConfig.established} {siteConfig.name}. All rights reserved.

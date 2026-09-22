@@ -72,7 +72,6 @@ const validateField = (field: FormField, value: string): string | undefined => {
   }
 };
 
-// Client-side validation only; wire `handleSubmit` to an API route when ready.
 export default function ContactForm({ className }: { className?: string }) {
   const [submitted, setSubmitted] = useState(false);
   const [formData, setFormData] = useState<FormData>({
@@ -121,8 +120,6 @@ export default function ContactForm({ className }: { className?: string }) {
     setErrors(newErrors);
     if (Object.keys(newErrors).length === 0) {
       setSubmitted(true);
-      /* TODO: wire handleSubmit to your email/CRM API */
-      console.log("Contact form submitted:", formData);
     }
   };
 

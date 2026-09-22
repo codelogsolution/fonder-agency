@@ -21,7 +21,7 @@ const pillars: Pillar[] = [
     description:
       "The invisible half of premium: type-safe APIs, resilient data layers, and cloud-native pipelines that stay fast under real production load.",
     image:
-      "https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1558494949.webp",
     imageAlt: "Server racks in a modern data center",
     points: [
       "Type-safe APIs & resilient data layers",
@@ -36,7 +36,7 @@ const pillars: Pillar[] = [
     description:
       "Interfaces people can feel — 60fps interactions, design systems in Figma and code, and accessibility built in from the first commit.",
     image:
-      "https://images.unsplash.com/photo-1587620962725-abab7fe55159?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1587620962725.webp",
     imageAlt: "Frontend code on a laptop screen",
     points: [
       "Butter-smooth 60fps interactions",
@@ -51,7 +51,7 @@ const pillars: Pillar[] = [
     description:
       "Strategy that survives contact with a market: direct-response copy, full-funnel campaigns, and reporting tied to revenue — not vanity metrics.",
     image:
-      "https://images.unsplash.com/photo-1557804506-669a67965ba0?auto=format&fit=crop&w=1200&q=80",
+      "/images/photo-1557804506.webp",
     imageAlt: "Growth team reviewing campaign performance together",
     points: [
       "Direct-response copywriting",

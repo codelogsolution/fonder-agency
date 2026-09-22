@@ -10,7 +10,6 @@ type RevealProps = {
   className?: string;
 };
 
-// Scroll-triggered reveal; respects reduced motion.
 export default function Reveal({
   children,
   delay = 0,

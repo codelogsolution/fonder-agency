@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 
 type NewsletterFormProps = { className?: string };
 
-// Local success state; wire `handleSubmit` to an email/CRM API when ready.
 export default function NewsletterForm({ className }: NewsletterFormProps) {
   const [email, setEmail] = useState("");
   const [subscribed, setSubscribed] = useState(false);

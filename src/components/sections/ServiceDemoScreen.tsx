@@ -118,21 +118,6 @@ function AreaChart({ tone = "cyan" }: { tone?: Tone }) {
   );
 }
 
-function Bars({ values, tone = "violet" }: { values: number[]; tone?: Tone }) {
-  return (
-    <div className="flex h-24 items-end gap-1.5" aria-hidden="true">
-      {values.map((value, index) => (
-        <div
-          key={index}
-          className={cn("flex-1 rounded-t bg-gradient-to-t", TONES[tone].fill)}
-          style={{ height: `${value}%`, opacity: 0.45 + (value / 100) * 0.55 }}
-        />
-      ))}
-    </div>
-  );
-}
-
-
 /* ---------------------------------- SEO ---------------------------------- */
 
 function SeoScreen({ item, index }: { item: ServicePreviewItem; index: number }) {

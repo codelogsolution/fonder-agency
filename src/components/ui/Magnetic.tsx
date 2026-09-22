@@ -10,7 +10,6 @@ type MagneticProps = {
   className?: string;
 };
 
-// Content gravitates toward the cursor; springs back on leave.
 export default function Magnetic({
   children,
   strength = 0.35,
@@ -35,7 +34,6 @@ export default function Magnetic({
     y.set(0);
   }, [x, y]);
 
-  // Stable motion props when the parent navigation re-renders.
   const style = useMemo(() => ({ x: springX, y: springY }), [springX, springY]);
 
   return (

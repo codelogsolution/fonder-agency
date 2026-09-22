@@ -70,6 +70,21 @@
   }
 }
 
+.homeProgress {
+  width: 0;
+  animation-name: home-progress;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+@keyframes home-progress {
+  from {
+    width: 0;
+  }
+  to {
+    width: 100%;
+  }
+}
+
 /* Reduced motion: stop the scroll and sliders, allow manual scrolling instead. */
 @media (prefers-reduced-motion: reduce) {
   .track {
@@ -77,6 +92,9 @@
   }
   .slide,
   .dot {
+    animation: none;
+  }
+  .homeProgress {
     animation: none;
   }
   .slide:nth-child(2),

@@ -13,7 +13,6 @@ type RotatingTextProps = {
   onWordChange?: (index: number) => void;
 };
 
-// Typewriter cycle: type, hold, delete, next word.
 function RotatingText({
   words,
   typeSpeed = 95,
@@ -28,7 +27,6 @@ function RotatingText({
   const [phase, setPhase] = useState<"waiting" | "typing" | "deleting">(
     "waiting",
   );
-  // Ref mirror so the timer callback never calls a stale closure.
   const onWordChangeRef = useRef(onWordChange);
   useEffect(() => {
     onWordChangeRef.current = onWordChange;
@@ -47,11 +45,9 @@ function RotatingText({
           typeSpeed,
         );
       } else {
-        // Word fully typed — hold it, then start deleting
         timer = setTimeout(() => setPhase("deleting"), holdPause);
       }
     } else {
-      // Deleting — shrink the displayed text one character at a time
       if (text.length > 0) {
         timer = setTimeout(() => setText(text.slice(0, -1)), deleteSpeed);
       } else {

@@ -11,7 +11,6 @@ type SplitTextProps = {
   wordClassName?: string;
 };
 
-// Words slide up out of an overflow mask, staggered left to right.
 function SplitText({
   text,
   delay = 0,

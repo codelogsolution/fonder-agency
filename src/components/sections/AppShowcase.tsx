@@ -24,7 +24,7 @@ import styles from "@/components/sections/Showcase.module.css";
 
 
 
-function StatusBar() {
+export function StatusBar() {
   return (
     <div className="relative flex items-center justify-between px-6 pb-1 pt-3 text-[10px] font-semibold text-white/80">
       <span>9:41</span>
@@ -40,7 +40,7 @@ function StatusBar() {
   );
 }
 
-function TabBar({ items, active }: { items: { icon: React.ElementType; label: string }[]; active: number }) {
+export function TabBar({ items, active }: { items: { icon: React.ElementType; label: string }[]; active: number }) {
   return (
     <div className="flex items-center justify-around border-t border-white/10 bg-[#0f1220] px-4 py-3">
       {items.map((item, index) => (
@@ -115,7 +115,7 @@ function CardRail({ title, action, children }: { title: string; action?: string;
 }
 
 
-function PulseFitScreen() {
+export function PulseFitScreen() {
   const workouts = [
     { icon: Dumbbell, name: "HIIT Blast", meta: "24 min · 320 kcal", tint: "bg-rose-400/20 text-rose-300" },
     { icon: Bike, name: "Cycle Sprint", meta: "30 min · 280 kcal", tint: "bg-emerald-400/20 text-emerald-300" },
@@ -216,7 +216,7 @@ function PulseFitScreen() {
 }
 
 
-function LocalTableScreen() {
+export function LocalTableScreen() {
   const categories = ["🍜 Noodles", "🥗 Bowls", "🍕 Pizza", "☕ Cafe", "🍰 Dessert", "🍣 Sushi"];
   const dishes = [
     { emoji: "🥙", name: "Harvest bowl", meta: "Fresh & seasonal · $12", tint: "bg-emerald-400/15" },
@@ -301,7 +301,7 @@ function LocalTableScreen() {
 }
 
 
-function PocketStudioScreen() {
+export function PocketStudioScreen() {
   const boards = [
     { name: "Summer light", items: 12, tint: "from-amber-400/30 to-orange-300/10" },
     { name: "City textures", items: 8, tint: "from-sky-400/30 to-indigo-300/10" },
