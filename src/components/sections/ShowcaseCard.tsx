@@ -43,7 +43,7 @@ export default function ShowcaseCard({
   const isFixed = fixedHeight !== undefined;
 
   return (
-    <article className={cn(styles.card, "group flex flex-col")} tabIndex={0} aria-label={`${title} — ${eyebrow} concept`}>
+    <article className={cn(styles.card, "group flex min-w-0 flex-col")} tabIndex={0} aria-label={`${title} — ${eyebrow} concept`}>
       <header
         className={cn(
           "mb-3 flex flex-col items-center justify-end text-center",

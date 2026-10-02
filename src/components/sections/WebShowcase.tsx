@@ -345,7 +345,7 @@ export default function WebShowcase() {
             </p>
           </div>
         </Reveal>
-        <div className="mt-12 grid gap-10 sm:gap-8 lg:grid-cols-2">
+        <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 sm:gap-8 lg:grid-cols-[repeat(2,minmax(0,1fr))]">
           {siteCards.map((site) => (
             <ShowcaseCard
               key={site.id}

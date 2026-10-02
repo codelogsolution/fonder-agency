@@ -106,8 +106,17 @@
     animation: none;
   }
   .slide:nth-child(2),
-  .slide:nth-child(3) {
+  .slide:nth-child(3),
+  .dot:nth-child(2),
+  .dot:nth-child(3) {
     opacity: 0;
+  }
+  /* The base .slide rule is opacity: 0 and only the keyframes ever raised it,
+     so with the animation off every slide stays blank and the demo shows an
+     empty coloured band. Pin the first slide (and its dot) visible instead. */
+  .slide:first-child,
+  .dot:first-child {
+    opacity: 1;
   }
   .viewport {
     overflow-y: auto;

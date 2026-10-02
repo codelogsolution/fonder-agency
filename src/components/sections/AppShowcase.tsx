@@ -421,7 +421,7 @@ export default function AppShowcase() {
           </div>
         </Reveal>
 
-        <div className="mt-12 grid gap-10 sm:grid-cols-2 sm:gap-8 xl:grid-cols-3">
+        <div className="mt-12 grid grid-cols-[minmax(0,1fr)] gap-10 sm:grid-cols-[repeat(2,minmax(0,1fr))] sm:gap-8 xl:grid-cols-[repeat(3,minmax(0,1fr))]">
           {appCards.map((app) => (
             <ShowcaseCard
               key={app.id}
