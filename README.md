@@ -1,4 +1,4 @@
-# Fonder — Digital Marketing & Development Agency
+# FonderDigital — Digital Marketing & Development Agency
 
 Premium, multi-page agency website.
 

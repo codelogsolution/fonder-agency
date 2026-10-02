@@ -2,6 +2,7 @@ import Link from "next/link";
 import { ArrowRight, ArrowUpRight } from "lucide-react";
 import { recentWins } from "@/config/site";
 import Reveal from "@/components/motion/Reveal";
+import Tilt3D from "@/components/motion/Tilt3D";
 
 export default function RecentWins() {
   return (
@@ -34,10 +35,11 @@ export default function RecentWins() {
               delay={(index % 3) * 0.1}
               className="h-full"
             >
-              <Link
-                href="/work"
-                className="group flex h-full flex-col rounded-2xl border border-border-subtle bg-surface p-8 transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_16px_48px_rgba(2,132,199,0.08)]"
-              >
+              <Tilt3D className="h-full" max={6} rounded="rounded-2xl">
+                <Link
+                  href="/work"
+                  className="group flex h-full flex-col rounded-2xl border border-border-subtle bg-surface p-8 transition-[border-color,box-shadow] duration-300 hover:border-primary/40 hover:shadow-[0_16px_48px_rgba(2,132,199,0.08)]"
+                >
                 <div className="flex items-start justify-between gap-4">
                   <p className="text-gradient text-5xl font-extrabold tracking-tight">
                     {win.metric}
@@ -50,7 +52,8 @@ export default function RecentWins() {
                 <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
                   {win.detail}
                 </p>
-              </Link>
+                  </Link>
+              </Tilt3D>
             </Reveal>
           ))}
         </div>

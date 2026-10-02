@@ -2,6 +2,7 @@ import dynamic from "next/dynamic";
 import Hero from "@/components/sections/Hero";
 import TrustMetrics from "@/components/sections/TrustMetrics";
 import Pillars from "@/components/sections/Pillars";
+import MarqueeStrip from "@/components/sections/MarqueeStrip";
 import RecentWins from "@/components/sections/RecentWins";
 import CallToAction from "@/components/sections/CallToAction";
 
@@ -16,6 +17,7 @@ export default function Home() {
       <Hero />
       <TrustMetrics />
       <Pillars />
+      <MarqueeStrip />
       <HomeShowcase />
       <StickyProcess />
       <RecentWins />

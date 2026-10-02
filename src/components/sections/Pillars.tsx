@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { ArrowRight, Code2, PenTool, Search, type LucideIcon } from "lucide-react";
 import Reveal from "@/components/motion/Reveal";
+import Tilt3D from "@/components/motion/Tilt3D";
 
 type Pillar = {
   title: string;
@@ -53,7 +54,8 @@ export default function Pillars() {
         <div className="mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
           {pillars.map((pillar, index) => (
             <Reveal key={pillar.title} delay={(index % 3) * 0.1} className="h-full">
-              <article className="group h-full overflow-hidden rounded-2xl border border-border-subtle bg-surface transition-all duration-300 hover:-translate-y-1.5 hover:border-primary/40 hover:shadow-[0_16px_48px_rgba(2,132,199,0.08)]">
+              <Tilt3D className="h-full" max={8} rounded="rounded-2xl">
+                <article className="group h-full overflow-hidden rounded-2xl border border-border-subtle bg-surface transition-[border-color,box-shadow] duration-300 hover:border-primary/40 hover:shadow-[0_16px_48px_rgba(2,132,199,0.08)]">
                 {/* Visual */}
                 <div
                   className={`relative aspect-[4/3] bg-gradient-to-br ${pillar.gradient}`}
@@ -80,7 +82,8 @@ export default function Pillars() {
                     <ArrowRight className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-1" />
                   </Link>
                 </div>
-              </article>
+                </article>
+              </Tilt3D>
             </Reveal>
           ))}
         </div>

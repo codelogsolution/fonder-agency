@@ -44,7 +44,15 @@ const TABS = [
   },
 ];
 
-export default function AppPhone({ index = 0, height = 300 }: { index?: number; height?: number }) {
+export default function AppPhone({
+  index = 0,
+  height = 300,
+  frameHeight,
+}: {
+  index?: number;
+  height?: number;
+  frameHeight?: number;
+}) {
   const slot = SCREENS[index % SCREENS.length];
   const tab = TABS[index % TABS.length];
 
@@ -53,6 +61,7 @@ export default function AppPhone({ index = 0, height = 300 }: { index?: number; 
       eyebrow={slot.eyebrow}
       title={slot.title}
       height={height}
+      frameHeight={frameHeight}
       duration={52}
       frameClassName="border border-slate-700/60 bg-[#0f1220] text-white"
       contentClassName="bg-[#0f1220]"

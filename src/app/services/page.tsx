@@ -9,7 +9,7 @@ import CallToAction from "@/components/sections/CallToAction";
 export const metadata: Metadata = {
   title: "Services",
   description:
-    "Explore Fonder's services — web development, app development, SEO, paid media, content & copywriting, and branding.",
+    "Explore FonderDigital's services — web development, app development, SEO, paid media, content & copywriting, and branding.",
 };
 
 export default function ServicesPage() {

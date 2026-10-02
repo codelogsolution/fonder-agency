@@ -4,7 +4,7 @@ import Reveal from "@/components/motion/Reveal";
 const timeline = [
   {
     year: "2022",
-    title: "Fonder is founded",
+    title: "FonderDigital is founded",
     description:
       "Three specialists, one conviction: agencies fragment strategy, design, and engineering. We refused to.",
   },
@@ -83,7 +83,7 @@ export default function Story() {
               </h3>
               <p className="mt-3 text-sm leading-relaxed text-muted">
                 Quality assurance isn&apos;t a phase — it&apos;s the operating
-                system. Every Fonder engagement runs on these commitments:
+                system. Every FonderDigital engagement runs on these commitments:
               </p>
               <ul className="mt-8 space-y-4">
                 {principles.map((principle) => (

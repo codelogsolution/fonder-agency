@@ -5,7 +5,14 @@ import ScrollProgress from "@/components/layout/ScrollProgress";
 import Header from "@/components/layout/Header";
 import Footer from "@/components/layout/Footer";
 import AssistantLauncher from "@/components/assistant/AssistantLauncher";
+import SmoothScroll from "@/components/motion/SmoothScroll";
+import CustomCursor from "@/components/motion/CustomCursor";
+import Preloader from "@/components/motion/Preloader";
 import "./globals.css";
+
+// Synchronous, pre-paint: repeat visitors skip the intro curtain entirely.
+const skipIntroScript =
+  "try{if(sessionStorage.getItem('fd-intro-seen')){document.documentElement.classList.add('fd-skip-intro')}}catch(e){}";
 
 const jakarta = Plus_Jakarta_Sans({
   variable: "--font-jakarta",
@@ -51,16 +58,25 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
+    // suppressHydrationWarning: the inline skip-intro script below may add
+    // `fd-skip-intro` to this element before React hydrates (repeat visitors),
+    // which is an intentional pre-paint mutation, not a real mismatch.
     <html
       lang="en"
-      className={`${jakarta.variable} h-full scroll-smooth antialiased`}
+      className={`${jakarta.variable} h-full antialiased`}
+      suppressHydrationWarning
     >
       <body className="flex min-h-full flex-col bg-background text-foreground">
-        <ScrollProgress />
-        <Header />
-        <main className="flex-1">{children}</main>
-        <Footer />
-        <AssistantLauncher />
+        <script dangerouslySetInnerHTML={{ __html: skipIntroScript }} />
+        <SmoothScroll>
+          <ScrollProgress />
+          <Header />
+          <main className="flex-1">{children}</main>
+          <Footer />
+          <AssistantLauncher />
+          <CustomCursor />
+          <Preloader />
+        </SmoothScroll>
       </body>
     </html>
   );

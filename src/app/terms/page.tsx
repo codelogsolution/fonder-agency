@@ -3,7 +3,7 @@ import PageHeader from "@/components/sections/PageHeader";
 
 export const metadata: Metadata = {
   title: "Terms of Service",
-  description: "The terms that apply to Fonder's services and the use of this website.",
+  description: "The terms that apply to FonderDigital's services and the use of this website.",
 };
 
 const sections = [

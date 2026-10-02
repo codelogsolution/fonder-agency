@@ -6,7 +6,15 @@ const SITES = [
   { page: <OrbitPage />, eyebrow: "SaaS landing page", title: "Orbit", url: "orbit-app.io" },
 ];
 
-export default function WebPage({ index = 0, height = 300 }: { index?: number; height?: number }) {
+export default function WebPage({
+  index = 0,
+  height = 300,
+  frameHeight,
+}: {
+  index?: number;
+  height?: number;
+  frameHeight?: number;
+}) {
   const slot = SITES[index % SITES.length];
 
   return (
@@ -14,6 +22,7 @@ export default function WebPage({ index = 0, height = 300 }: { index?: number; h
       eyebrow={slot.eyebrow}
       title={slot.title}
       height={height}
+      frameHeight={frameHeight}
       duration={80}
       frameClassName="rounded-2xl border border-slate-200 bg-white"
       top={<BrowserBar url={slot.url} />}

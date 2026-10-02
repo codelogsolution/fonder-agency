@@ -76,18 +76,22 @@
 }
 
 /* Base styles */
+/* NOTE: no `scroll-behavior: smooth` — Lenis owns scrolling and CSS smooth
+   scrolling fights its per-frame position updates. */
 
 html {
   color-scheme: light;
-  scroll-behavior: smooth;
   overflow-x: hidden;
   overflow-x: clip;
 }
 
+/* Repeat visitors skip the intro curtain before first paint (the inline
+   script in the root layout adds this class during HTML parsing). */
+html.fd-skip-intro [data-preloader] {
+  display: none !important;
+}
+
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
   *,
   *::before,
   *::after {
@@ -197,4 +201,29 @@ body {
     linear-gradient(to right, rgba(11, 18, 32, 0.06) 1px, transparent 1px),
     linear-gradient(to bottom, rgba(11, 18, 32, 0.06) 1px, transparent 1px);
   background-size: 56px 56px;
+}
+
+/* Shine sweep across primary buttons on hover */
+@utility btn-shine {
+  position: relative;
+  overflow: hidden;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background: linear-gradient(
+      105deg,
+      transparent 42%,
+      rgba(255, 255, 255, 0.45) 50%,
+      transparent 58%
+    );
+    transform: translateX(-120%);
+    transition: transform 0.7s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(120%);
+  }
 }

@@ -1,4 +1,5 @@
 import Reveal from "@/components/motion/Reveal";
+import SplitText from "@/components/motion/SplitText";
 
 type PageHeaderProps = {
   eyebrow: string;
@@ -7,6 +8,7 @@ type PageHeaderProps = {
 };
 
 // Consistent page hero for interior routes (clears the fixed navbar).
+// Title cascades letter-by-letter on every route change.
 export default function PageHeader({
   eyebrow,
   title,
@@ -19,19 +21,21 @@ export default function PageHeader({
         className="absolute -top-40 left-1/2 h-[420px] w-[680px] -translate-x-1/2 rounded-full bg-primary/10 blur-[140px]"
       />
       <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-        <Reveal>
+        <Reveal delay={0.05}>
           <span className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
             {eyebrow}
           </span>
-          <h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
-            {title}
-          </h1>
-          {description && (
+        </Reveal>
+        <h1 className="mt-4 max-w-3xl text-4xl font-extrabold tracking-tight sm:text-5xl">
+          <SplitText text={title} by="char" className="inline-block" />
+        </h1>
+        {description && (
+          <Reveal delay={0.45}>
             <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted sm:text-lg">
               {description}
             </p>
-          )}
-        </Reveal>
+          </Reveal>
+        )}
       </div>
     </section>
   );

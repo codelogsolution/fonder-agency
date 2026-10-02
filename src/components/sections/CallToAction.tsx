@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import Button from "@/components/ui/Button";
 import Reveal from "@/components/motion/Reveal";
+import Parallax from "@/components/motion/Parallax";
 
 export default function CallToAction() {
   return (
@@ -8,10 +9,15 @@ export default function CallToAction() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         <Reveal>
           <div className="relative overflow-hidden rounded-3xl border border-border-subtle bg-gradient-to-b from-surface to-surface-2 px-6 py-16 text-center sm:px-16 sm:py-24">
-            <div
-              aria-hidden
-              className="absolute -top-24 left-1/2 h-64 w-[480px] -translate-x-1/2 rounded-full bg-primary/15 blur-[100px]"
-            />
+            <Parallax
+              speed={50}
+              className="absolute -top-24 left-1/2 h-64 w-[480px] -translate-x-1/2"
+            >
+              <div
+                aria-hidden
+                className="h-full w-full rounded-full bg-primary/15 blur-[100px]"
+              />
+            </Parallax>
             <span className="relative text-xs font-bold uppercase tracking-[0.2em] text-primary">
               Let&apos;s build together
             </span>

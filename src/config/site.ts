@@ -14,12 +14,12 @@ export type Stat = { value: string; label: string };
 export type NavItem = { label: string; href: string };
 
 export const siteConfig = {
-  name: "Fonder",
+  name: "FonderDigital",
   tagline: "Digital Marketing & Development Agency",
   description:
-    "Fonder is a premium digital agency crafting high-performance websites, unforgettable brands, and growth campaigns that convert.",
-  url: "https://fonder.agency",
-  email: "hello@fonder.agency",
+    "FonderDigital is a premium digital agency crafting high-performance websites, unforgettable brands, and growth campaigns that convert.",
+  url: "https://fonderdigital.com",
+  email: "hello@fonderdigital.com",
   phone: "+91 (704) 262-0665",
   location: "Noida, Sector 62",
   nav: [
@@ -77,7 +77,7 @@ export const heroSlides: HeroSlide[] = [
     stat: "28+",
     caption: "Websites shipped",
     blurb:
-      "Fonder builds fast, conversion-focused websites that load in a flash and guide visitors to book, buy or sign up.",
+      "FonderDigital builds fast, conversion-focused websites that load in a flash and guide visitors to book, buy or sign up.",
     label: "Websites",
   },
   {

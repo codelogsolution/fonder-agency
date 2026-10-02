@@ -10,7 +10,7 @@ const base =
 
 const variants: Record<Variant, string> = {
   primary:
-    "bg-primary text-primary-foreground hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(2,132,199,0.4)]",
+    "btn-shine bg-primary text-primary-foreground hover:-translate-y-0.5 hover:shadow-[0_0_32px_rgba(2,132,199,0.4)]",
   outline:
     "border border-border-subtle text-foreground hover:-translate-y-0.5 hover:border-primary/60 hover:text-primary",
   ghost: "text-muted hover:text-foreground",

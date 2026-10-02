@@ -3,7 +3,15 @@ import DemoBar from "@/components/sections/DemoBar";
 import DemoScreen from "@/components/sections/ServiceDemoScreen";
 import { getServicePreviewItems } from "@/config/site";
 
-export default function ServiceCard({ slug, height = 300 }: { slug: string; height?: number }) {
+export default function ServiceCard({
+  slug,
+  height = 300,
+  frameHeight,
+}: {
+  slug: string;
+  height?: number;
+  frameHeight?: number;
+}) {
   const items = getServicePreviewItems(slug);
   const item = items[0];
   if (!item) return null;
@@ -13,6 +21,7 @@ export default function ServiceCard({ slug, height = 300 }: { slug: string; heig
       eyebrow={item.subtitle}
       title={item.title}
       height={height}
+      frameHeight={frameHeight}
       duration={52}
       frameClassName="border border-slate-700/60 bg-[#0b0d14] text-white"
       contentClassName="bg-[#10131d]"

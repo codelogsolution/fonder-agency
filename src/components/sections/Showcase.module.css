@@ -4,6 +4,14 @@
   overflow: hidden;
 }
 
+/* Fixed-frame cards: the frame owns the height, so the viewport flexes to fill
+   whatever the chrome (browser bar / status bar / tab bar) leaves over. */
+.viewportFill {
+  height: auto;
+  flex: 1 1 0%;
+  min-height: 0;
+}
+
 /* Column flex keeps the two content copies stacked with no margin collapsing,
    so the track is always exactly 2x one copy and -50% lands on the second. */
 .track {

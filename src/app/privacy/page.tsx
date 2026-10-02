@@ -4,7 +4,7 @@ import PageHeader from "@/components/sections/PageHeader";
 export const metadata: Metadata = {
   title: "Privacy Policy",
   description:
-    "How Fonder collects, uses, and protects the information you share through this website.",
+    "How FonderDigital collects, uses, and protects the information you share through this website.",
 };
 
 const sections = [

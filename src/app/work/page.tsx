@@ -25,7 +25,7 @@ export default function WorkPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal>
             <div className="border-t border-border-subtle pt-12">
-              <h2 id="work-overview" className="text-2xl font-extrabold tracking-tight">Fonder at a glance</h2>
+              <h2 id="work-overview" className="text-2xl font-extrabold tracking-tight">FonderDigital at a glance</h2>
               <dl className="mt-6 grid auto-rows-fr gap-4 sm:grid-cols-3">
                 {overviewStats.map(({ value, label }) => (
                   <div key={label} className="flex flex-col rounded-2xl border border-border-subtle bg-surface p-6">

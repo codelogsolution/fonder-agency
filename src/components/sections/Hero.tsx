@@ -141,7 +141,7 @@ export default function Hero() {
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1, ease }} className="flex flex-wrap items-center gap-3">
             <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface/60 px-4 py-1.5 text-xs font-semibold text-primary">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
-              Fonder • Marketing + Tech Agency
+              FonderDigital • Marketing + Tech Agency
             </span>
             <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary">
               2 project slots open
@@ -168,7 +168,7 @@ export default function Hero() {
             transition={{ duration: 0.7, delay: 1.05, ease }}
             className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
           >
-            Fonder helps startups & growing brands with websites, apps, SEO, social media, branding, design & content — one passionate team for all your marketing and tech needs.
+            FonderDigital helps startups & growing brands with websites, apps, SEO, social media, branding, design & content — one passionate team for all your marketing and tech needs.
           </motion.p>
           <motion.div
             initial={{ opacity: 0, y: 24 }}

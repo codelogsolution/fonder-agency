@@ -1,18 +1,25 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import { useEffect } from "react";
 import { heroSlides } from "@/config/site";
 import { ShowcaseFallback } from "@/components/sections/ShowcaseCard";
 
-const AppPhone = dynamic(() => import("@/components/sections/showcase/AppPhone"), {
-  loading: () => <HeroPreviewLoading />,
-});
-const WebPage = dynamic(() => import("@/components/sections/showcase/WebPage"), {
-  loading: () => <HeroPreviewLoading />,
-});
-const ServiceCard = dynamic(() => import("@/components/sections/showcase/ServiceCard"), {
-  loading: () => <HeroPreviewLoading />,
-});
+/**
+ * Every demo in the slider renders inside one locked frame height. The three
+ * card kinds carry different chrome (browser bar 44px / status bar + tab bar
+ * 107px / demo bar 48px), so without this the whole section resized on every
+ * slide change. 410px still leaves each demo a 300px+ scroll viewport.
+ */
+const FRAME_HEIGHT = 410;
+
+const loadAppPhone = () => import("@/components/sections/showcase/AppPhone");
+const loadWebPage = () => import("@/components/sections/showcase/WebPage");
+const loadServiceCard = () => import("@/components/sections/showcase/ServiceCard");
+
+const AppPhone = dynamic(loadAppPhone, { loading: () => <HeroPreviewLoading /> });
+const WebPage = dynamic(loadWebPage, { loading: () => <HeroPreviewLoading /> });
+const ServiceCard = dynamic(loadServiceCard, { loading: () => <HeroPreviewLoading /> });
 
 type PreviewSlot =
   | { kind: "app"; screen: number }
@@ -44,10 +51,12 @@ function normalizeSlide(slide: number, length: number): number {
 }
 
 function HeroPreviewLoading() {
+  // Mirrors the real card geometry (76px header + 12px gap + frame) so a chunk
+  // still loading can never make the slider jump.
   return (
     <div aria-hidden="true" className="flex flex-col motion-safe:animate-pulse">
-      <div className="mx-auto h-[66px] w-44 rounded-xl bg-surface" />
-      <div className="mt-3 h-[300px] rounded-[2rem] bg-surface" />
+      <div className="mx-auto h-[76px] w-44 rounded-xl bg-surface" />
+      <div className="mt-3 rounded-[2rem] bg-surface" style={{ height: FRAME_HEIGHT }} />
     </div>
   );
 }
@@ -56,12 +65,19 @@ export default function HeroPreview({ slide }: { slide: number }) {
   const index = normalizeSlide(slide, heroSlides.length);
   const slot: PreviewSlot = SLOT_BY_SLIDE[index] ?? FALLBACK_SLOT;
 
-  if (slot.kind === "app") return <AppPhone index={slot.screen} height={300} />;
-  if (slot.kind === "web") return <WebPage index={slot.screen} height={300} />;
-  return <ServiceCard slug={slot.slug} height={300} />;
+  // Warm all three demo chunks once so later slides swap instantly.
+  useEffect(() => {
+    void loadAppPhone();
+    void loadWebPage();
+    void loadServiceCard();
+  }, []);
+
+  if (slot.kind === "app") return <AppPhone index={slot.screen} height={300} frameHeight={FRAME_HEIGHT} />;
+  if (slot.kind === "web") return <WebPage index={slot.screen} height={300} frameHeight={FRAME_HEIGHT} />;
+  return <ServiceCard slug={slot.slug} height={300} frameHeight={FRAME_HEIGHT} />;
 }
 
 export function HeroPreviewFallback() {
-  return <ShowcaseFallback cards={1} height={300} />;
+  return <ShowcaseFallback cards={1} height={FRAME_HEIGHT} />;
 }
 

@@ -5,25 +5,30 @@ import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import Reveal from "@/components/motion/Reveal";
+import Tilt3D from "@/components/motion/Tilt3D";
 import HeroPreview from "@/components/sections/HeroPreview";
 import styles from "@/components/sections/Showcase.module.css";
 import { heroSlides } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const ROTATE_MS = 5500;
+/* Copy + demo frame + loading skeleton all swap on this beat. */
+const SWAP_S = 0.3;
 
 export default function HomeShowcase() {
   const [active, setActive] = useState(0);
   const prefersReducedMotion = useReducedMotion();
   const slide = heroSlides[active % heroSlides.length];
 
+  // Re-armed on every change, manual navigation included, so the countdown, the
+  // progress bar and the demos never drift out of sync with each other.
   useEffect(() => {
     if (prefersReducedMotion) return;
-    const timer = setInterval(() => {
+    const timer = setTimeout(() => {
       setActive((current) => (current + 1) % heroSlides.length);
     }, ROTATE_MS);
-    return () => clearInterval(timer);
-  }, [prefersReducedMotion]);
+    return () => clearTimeout(timer);
+  }, [prefersReducedMotion, active]);
 
   const go = (direction: 1 | -1) => {
     setActive(
@@ -56,8 +61,15 @@ export default function HomeShowcase() {
             heading to open that service page.
           </p>
         </Reveal>
-        <div className="mt-12 grid items-center gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          <div className="min-h-[340px] sm:min-h-[320px]">
+        <div className="mt-12 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
+          {/* min-w-0 keeps this column from being pushed wide by the demo's
+              intrinsic width. The min-heights reserve room for the longest slide
+              copy (measured max: 424px below sm, 332px from sm up to the 960px
+              lg breakpoint) so the single-column stack is the same height on
+              every slide and mt-auto can pin the controls without the section
+              jumping. At lg the column stretches to the preview's height anyway
+              (row is 527px). */}
+          <div className="flex min-w-0 flex-col min-h-[424px] sm:min-h-[332px]">
             <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/[0.08] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
               {slide.service}
             </span>
@@ -65,10 +77,14 @@ export default function HomeShowcase() {
               <AnimatePresence mode="wait">
                 <motion.div
                   key={`copy-${active}`}
-                  initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 18 }}
+                  initial={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: 14 }}
                   animate={{ opacity: 1, y: 0 }}
-                  exit={prefersReducedMotion ? { opacity: 0 } : { opacity: 0, y: -14 }}
-                  transition={{ duration: 0.45, ease: [0.21, 0.47, 0.32, 0.98] }}
+                  exit={
+                    prefersReducedMotion
+                      ? { opacity: 0, transition: { duration: 0.18 } }
+                      : { opacity: 0, y: -12, transition: { duration: 0.18 } }
+                  }
+                  transition={{ duration: SWAP_S, ease: [0.21, 0.47, 0.32, 0.98] }}
                 >
 
                   <Link href={slide.href} className="group mt-4 block">
@@ -105,7 +121,10 @@ export default function HomeShowcase() {
                 </motion.div>
               </AnimatePresence>
             </div>
-            <div className="mt-6 flex flex-wrap items-center gap-4">
+            {/* Stacked below sm so the nav pills always sit on their own line:
+                side by side, a long "Explore …" label wraps them and the row
+                grows by 52px on some slides only, which reads as a jump. */}
+            <div className="mt-auto flex flex-col items-start gap-3 pt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <Link
                 href={slide.href}
                 className="inline-flex items-center gap-2 rounded-full bg-primary px-5 py-2.5 text-sm font-bold text-white shadow-[0_12px_32px_-12px_rgba(2,132,199,0.6)] transition-transform duration-300 hover:-translate-y-0.5"
@@ -137,21 +156,27 @@ export default function HomeShowcase() {
               </div>
             </div>
           </div>
-          <Reveal delay={0.1} className="mx-auto w-full max-w-[400px] min-h-[310px] sm:min-h-[290px] lg:max-w-[450px]">
+          {/* min-w-0 is what lets this column fit a 320px phone: without it the
+              demo's intrinsic width inflates the grid track and the section's
+              overflow-hidden clips the card. */}
+          <Reveal delay={0.1} className="mx-auto w-full min-w-0 max-w-[400px] lg:max-w-[450px]">
+            <Tilt3D className="relative" max={6} rounded="rounded-3xl">
             <AnimatePresence mode="wait">
               <motion.div
                 key={`preview-${active}`}
                 initial={{ opacity: 0, scale: 0.98 }}
                 animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0.99 }}
-                transition={{ duration: 0.45, ease: [0.21, 0.47, 0.32, 0.98] }}
+                exit={{ opacity: 0, scale: 0.99, transition: { duration: 0.18 } }}
+                transition={{ duration: SWAP_S, ease: [0.21, 0.47, 0.32, 0.98] }}
               >
                 <HeroPreview slide={active % heroSlides.length} />
               </motion.div>
             </AnimatePresence>
-            <p className="mt-3 text-center text-[11px] text-muted">
-              Live concept preview · heading opens {slide.service}
+            <p className="mt-3 w-full truncate text-center text-[11px] text-muted">
+              Live concept preview
+              <span className="hidden sm:inline"> · heading opens {slide.service}</span>
             </p>
+            </Tilt3D>
           </Reveal>
         </div>
 
