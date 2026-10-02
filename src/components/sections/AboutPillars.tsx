@@ -61,7 +61,6 @@ const pillars: Pillar[] = [
   },
 ];
 
-// The three execution pillars, alternating image-led rows.
 export default function AboutPillars() {
   return (
     <section className="relative py-8 sm:py-14">
@@ -73,7 +72,7 @@ export default function AboutPillars() {
               key={pillar.index}
               className="grid items-center gap-12 lg:grid-cols-2"
             >
-              {/* Visual */}
+
               <Reveal className={cn("group", reversed && "lg:order-2")}>
                 <div className="relative aspect-[4/3] overflow-hidden rounded-3xl border border-border-subtle shadow-[0_24px_64px_rgba(2,132,199,0.08)]">
                   <Image
@@ -93,7 +92,6 @@ export default function AboutPillars() {
                 </div>
               </Reveal>
 
-              {/* Copy */}
               <Reveal delay={0.1} className={cn(reversed && "lg:order-1")}>
                 <p className="text-xs font-bold uppercase tracking-[0.2em] text-primary">
                   {pillar.subtitle}

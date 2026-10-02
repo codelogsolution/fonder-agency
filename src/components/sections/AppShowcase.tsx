@@ -22,8 +22,6 @@ import ShowcaseCard from "@/components/sections/ShowcaseCard";
 import { cn } from "@/lib/utils";
 import styles from "@/components/sections/Showcase.module.css";
 
-
-
 export function StatusBar() {
   return (
     <div className="relative flex items-center justify-between px-6 pb-1 pt-3 text-[10px] font-semibold text-white/80">
@@ -58,7 +56,6 @@ export function TabBar({ items, active }: { items: { icon: React.ElementType; la
     </div>
   );
 }
-
 
 function AppHeader({ title }: { title: string }) {
   return (
@@ -113,7 +110,6 @@ function CardRail({ title, action, children }: { title: string; action?: string;
     </div>
   );
 }
-
 
 export function PulseFitScreen() {
   const workouts = [
@@ -215,7 +211,6 @@ export function PulseFitScreen() {
   );
 }
 
-
 export function LocalTableScreen() {
   const categories = ["🍜 Noodles", "🥗 Bowls", "🍕 Pizza", "☕ Cafe", "🍰 Dessert", "🍣 Sushi"];
   const dishes = [
@@ -300,7 +295,6 @@ export function LocalTableScreen() {
   );
 }
 
-
 export function PocketStudioScreen() {
   const boards = [
     { name: "Summer light", items: 12, tint: "from-amber-400/30 to-orange-300/10" },
@@ -374,7 +368,6 @@ export function PocketStudioScreen() {
     </div>
   );
 }
-
 
 const appCards = [
   {

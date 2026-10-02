@@ -7,8 +7,6 @@ type PageHeaderProps = {
   description?: string;
 };
 
-// Consistent page hero for interior routes (clears the fixed navbar).
-// Title cascades letter-by-letter on every route change.
 export default function PageHeader({
   eyebrow,
   title,

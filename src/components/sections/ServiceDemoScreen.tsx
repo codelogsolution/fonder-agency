@@ -118,8 +118,6 @@ function AreaChart({ tone = "cyan" }: { tone?: Tone }) {
   );
 }
 
-/* ---------------------------------- SEO ---------------------------------- */
-
 function SeoScreen({ item, index }: { item: ServicePreviewItem; index: number }) {
   const [, ...rest] = item.entries;
 
@@ -216,8 +214,6 @@ function SeoScreen({ item, index }: { item: ServicePreviewItem; index: number })
   );
 }
 
-/* -------------------------------- Branding -------------------------------- */
-
 function BrandScreen({ item, index }: { item: ServicePreviewItem; index: number }) {
   const [, ...rest] = item.entries;
 
@@ -308,9 +304,6 @@ function BrandScreen({ item, index }: { item: ServicePreviewItem; index: number 
     </div>
   );
 }
-
-
-/* -------------------------------- Marketing ------------------------------- */
 
 function MarketingScreen({ item, index }: { item: ServicePreviewItem; index: number }) {
   const [, ...rest] = item.entries;
@@ -427,9 +420,6 @@ function MarketingScreen({ item, index }: { item: ServicePreviewItem; index: num
   );
 }
 
-
-/* --------------------------------- Content -------------------------------- */
-
 function ContentScreen({ item, index }: { item: ServicePreviewItem; index: number }) {
   const [, ...rest] = item.entries;
 
@@ -519,8 +509,6 @@ function ContentScreen({ item, index }: { item: ServicePreviewItem; index: numbe
   );
 }
 
-/* ------------------------------- Public entry ------------------------------ */
-
 export default function DemoScreen({ item }: { item: ServicePreviewItem }) {
   const index = Number(item.id.slice(item.id.lastIndexOf("-") + 1)) || 0;
 
@@ -543,4 +531,3 @@ export default function DemoScreen({ item }: { item: ServicePreviewItem }) {
       );
   }
 }
-

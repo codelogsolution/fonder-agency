@@ -185,7 +185,7 @@ export function AureliaPage() {
         <p className="mx-auto max-w-sm text-sm font-serif italic leading-relaxed text-slate-700">
           “The kind of shop you trust with your whole wardrobe — everything just works together.”
         </p>
-        <p className="mt-2 text-[9px] font-semibold uppercase tracking-widest text-slate-400">4.9★ · 12k reviews</p>
+        <p className="mt-2 text-[9px] font-semibold uppercase tracking-widest text-slate-400">12k orders shipped</p>
         <div className="mx-auto mt-4 flex max-w-xs items-center gap-2 rounded-full border border-slate-200 p-1 pl-4">
           <span className="flex-1 text-left text-[10px] text-slate-400">Email for 10% off</span>
           <span className="rounded-full bg-slate-900 px-3 py-1.5 text-[10px] font-bold text-white">Join</span>
@@ -368,4 +368,3 @@ export default function WebShowcase() {
     </section>
   );
 }
-

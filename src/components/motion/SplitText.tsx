@@ -6,11 +6,11 @@ import { motion } from "framer-motion";
 type SplitTextProps = {
   text: string;
   delay?: number;
-  /** Override the per-unit stagger. Defaults: 0.016s per char, 0.07s per word. */
+
   stagger?: number;
   className?: string;
   wordClassName?: string;
-  /** "word" = word-by-word masks (default). "char" = letter-by-letter cascade. */
+
   by?: "word" | "char";
 };
 
@@ -61,7 +61,7 @@ function SplitText({
                 </motion.span>
               );
             })}
-            {/* Keep the space between words in char mode (outside the mask). */}
+
             {by === "char" && wordIdx < words.length - 1 ? (
               <span className="inline-block">&nbsp;</span>
             ) : null}
@@ -73,4 +73,3 @@ function SplitText({
 }
 
 export default memo(SplitText);
-

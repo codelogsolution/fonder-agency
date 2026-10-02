@@ -27,9 +27,6 @@ const marqueeBrands = [
 
 const INTERVAL = 6000;
 
-
-
-// Testimonial slider — one quote at a time with auto-advance.
 export default function Testimonials() {
   const [current, setCurrent] = useState(0);
   const sliderRef = useRef<HTMLDivElement>(null);
@@ -38,7 +35,6 @@ export default function Testimonials() {
   const showControls = total > 1;
   const [playing, setPlaying] = useState(!prefersReducedMotion);
 
-  // Auto-advance
   useEffect(() => {
     if (!playing || !showControls || prefersReducedMotion) return;
     const handle = setTimeout(() => {
@@ -57,7 +53,6 @@ export default function Testimonials() {
   );
   const togglePlay = () => setPlaying((p) => !p);
 
-  // Keyboard shortcuts when the slider is focused
   useEffect(() => {
     if (!showControls) return;
     const onKey = (e: globalThis.KeyboardEvent) => {
@@ -80,13 +75,13 @@ export default function Testimonials() {
     }, [current, showControls, goTo]);
 
   const t = testimonials[current];
-  
+
   return (
     <section
       id="testimonials"
       className="relative overflow-hidden border-y border-border-subtle bg-surface/30 py-20 sm:py-28"
     >
-      {/* Soft depth orb */}
+
       <div
         aria-hidden
         className="absolute -top-40 -right-40 h-96 w-96 rounded-full bg-gradient-to-br from-primary/4 to-transparent blur-3xl"
@@ -203,7 +198,6 @@ export default function Testimonials() {
           </div>
         </Reveal>
 
-        {/* Controls: play/pause · dots · arrows */}
         {showControls && (
           <div className="mt-8 flex items-center justify-center gap-5">
             <button
@@ -264,7 +258,6 @@ export default function Testimonials() {
           </div>
         )}
 
-        {/* Progress bar — visible only while auto-playing */}
         {showControls && playing && !prefersReducedMotion && (
           <div className="mt-4 h-1 w-80 max-w-3xl overflow-hidden rounded-full bg-border-subtle">
             <motion.div
@@ -282,7 +275,6 @@ export default function Testimonials() {
         )}
       </div>
 
-      {/* Client marquee — pauses on hover */}
       <div className="group relative mt-16 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_12%,black_88%,transparent)]">
         <div className="flex w-max animate-marquee items-center gap-12 group-hover:[animation-play-state:paused]">
           {[...marqueeBrands, ...marqueeBrands].map((brand, index) => (

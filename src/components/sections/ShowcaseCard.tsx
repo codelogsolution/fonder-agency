@@ -7,11 +7,7 @@ type ShowcaseCardProps = {
   note?: string;
   duration?: number;
   height?: number | string;
-  /**
-   * Locks the emulator frame to one height so the card never changes size when
-   * slides (and their different chrome: browser bar / status bar / tab bar)
-   * swap. The scroll viewport flexes to fill whatever the chrome leaves.
-   */
+
   frameHeight?: number | string;
   top?: React.ReactNode;
   bottom?: React.ReactNode;
@@ -105,4 +101,3 @@ export function ShowcaseFallback({ cards = 3, height = 510 }: { cards?: number; 
     </section>
   );
 }
-

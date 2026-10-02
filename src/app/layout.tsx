@@ -10,7 +10,6 @@ import CustomCursor from "@/components/motion/CustomCursor";
 import Preloader from "@/components/motion/Preloader";
 import "./globals.css";
 
-// Synchronous, pre-paint: repeat visitors skip the intro curtain entirely.
 const skipIntroScript =
   "try{if(sessionStorage.getItem('fd-intro-seen')){document.documentElement.classList.add('fd-skip-intro')}}catch(e){}";
 
@@ -58,9 +57,6 @@ export const viewport: Viewport = {
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    // suppressHydrationWarning: the inline skip-intro script below may add
-    // `fd-skip-intro` to this element before React hydrates (repeat visitors),
-    // which is an intentional pre-paint mutation, not a real mismatch.
     <html
       lang="en"
       className={`${jakarta.variable} h-full antialiased`}

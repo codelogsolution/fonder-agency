@@ -13,7 +13,6 @@ const LeadAssistant = dynamic(() => import("./LeadAssistant"), {
   ),
 });
 
-// Download the guide only after explicit interaction; retain its state afterward.
 export default function AssistantLauncher() {
   const [activated, setActivated] = useState(false);
 

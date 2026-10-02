@@ -14,12 +14,11 @@ import { heroServices, heroSlides } from "@/config/site";
 
 const ease: [number, number, number, number] = [0.21, 0.47, 0.32, 0.98];
 const heroWords = heroSlides.map((s) => s.word + ".");
-// Cursor decor lives on small fixed-size layers moved with transforms only,
-// to avoid full-viewport repaints on every pointer frame.
+
 const REVEAL_SIZE = 720;
 const REVEAL_RADIUS = REVEAL_SIZE / 2;
 const SPOTLIGHT_SIZE = 560;
-// Cursor decor starts once the hero intro settles.
+
 const CURSOR_START_DELAY = 1500;
 
 export default function Hero() {
@@ -32,18 +31,17 @@ export default function Hero() {
   const glowY = useSpring(useTransform(my, [-0.5, 0.5], [-16, 16]), { stiffness: 50, damping: 20 });
   const spotX = useSpring(-600, { stiffness: 80, damping: 25 });
   const spotY = useSpring(-600, { stiffness: 80, damping: 25 });
-  // Keeps the grid anchored to the page while the window follows the cursor.
+
   const gridX = useTransform(spotX, (value) => REVEAL_RADIUS - value);
   const gridY = useTransform(spotY, (value) => REVEAL_RADIUS - value);
   const frameRef = useRef<number | null>(null);
   const pointerRef = useRef({ x: -600, y: -600, nx: 0, ny: 0 });
   const sectionRef = useRef<HTMLElement>(null);
 
-  // Coalesce pointer writes to one per frame.
   const flushPointer = useCallback(() => {
     frameRef.current = null;
     const { x, y, nx, ny } = pointerRef.current;
-    // Convert viewport coords to section-local so the reveal tracks the cursor.
+
     const rect = sectionRef.current?.getBoundingClientRect();
     mx.set(nx);
     my.set(ny);
@@ -71,7 +69,6 @@ export default function Hero() {
     [],
   );
 
-  // Track the pointer only on fine-pointer devices, after the intro settles.
   useEffect(() => {
     if (prefersReducedMotion) return;
     if (!window.matchMedia("(hover: hover) and (pointer: fine)").matches) return;
@@ -204,16 +201,11 @@ export default function Hero() {
                 </span>
               </div>
               <div>
-                <div className="flex gap-0.5">
-                  {Array.from({ length: 5 }).map((_, starIndex) => (
-                    <Star
-                      key={starIndex}
-                      className="h-3.5 w-3.5 fill-primary text-primary"
-                    />
-                  ))}
-                </div>
+                <p className="text-sm font-semibold text-foreground">
+                  30+ clients onboarded
+                </p>
                 <p className="mt-1 text-xs text-muted">
-                  Rated 4.9/5 by 30+ clients
+                  8 disciplines under one roof
                 </p>
               </div>
             </div>

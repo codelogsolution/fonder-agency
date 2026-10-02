@@ -13,19 +13,16 @@ import {
 type Tilt3DProps = {
   children: ReactNode;
   className?: string;
-  /** Max tilt in degrees. */
+
   max?: number;
-  /** Hover scale. */
+
   scale?: number;
-  /** Moving glare sheen. */
+
   glare?: boolean;
-  /** Border radius class shared by the tilt layer + glare (for clipping). */
+
   rounded?: string;
 };
 
-// Pointer-tracked 3D tilt with a moving glare sheen. Springs smooth the
-// rotation, everything is transform-only (no layout work), and it switches
-// itself off for touch-coarse pointers and reduced-motion users.
 export default function Tilt3D({
   children,
   className,
@@ -37,7 +34,6 @@ export default function Tilt3D({
   const ref = useRef<HTMLDivElement>(null);
   const reduced = useReducedMotion();
 
-  // Pointer position normalised to 0..1 on both axes.
   const pointerX = useMotionValue(0.5);
   const pointerY = useMotionValue(0.5);
 

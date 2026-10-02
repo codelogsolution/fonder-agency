@@ -60,7 +60,7 @@ const validateField = (field: FormField, value: string): string | undefined => {
       if (!value) return "Please select a service";
       return undefined;
     case "website":
-      if (!value.trim()) return undefined; /* optional */
+      if (!value.trim()) return undefined;
       if (!/^https?:\/\/.+/.test(value.trim()))
         return "Include https:// in the URL";
       return undefined;
@@ -287,7 +287,6 @@ export default function ContactForm({ className }: { className?: string }) {
               {renderError("website")}
             </div>
 
-
             <div>
               <label htmlFor="contact-message" className={labelClasses}>
                 Message
@@ -329,4 +328,3 @@ export default function ContactForm({ className }: { className?: string }) {
     </div>
   );
 }
-

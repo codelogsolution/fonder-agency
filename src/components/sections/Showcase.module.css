@@ -1,19 +1,15 @@
-/* Showcase auto-scroll. --showcase-h is set per card by <ShowcaseCard>. */
+
 .viewport {
   height: var(--showcase-h, 440px);
   overflow: hidden;
 }
 
-/* Fixed-frame cards: the frame owns the height, so the viewport flexes to fill
-   whatever the chrome (browser bar / status bar / tab bar) leaves over. */
 .viewportFill {
   height: auto;
   flex: 1 1 0%;
   min-height: 0;
 }
 
-/* Column flex keeps the two content copies stacked with no margin collapsing,
-   so the track is always exactly 2x one copy and -50% lands on the second. */
 .track {
   display: flex;
   flex-direction: column;
@@ -22,14 +18,12 @@
   animation-iteration-count: infinite;
 }
 
-/* One copy of the content, never shorter than the window. */
 .copy {
   display: flow-root;
   flex: 0 0 auto;
   min-height: var(--showcase-h, 440px);
 }
 
-/* Hover or keyboard focus pauses the scroll. */
 .card:hover .track,
 .card:focus-within .track {
   animation-play-state: paused;
@@ -40,7 +34,6 @@
   }
 }
 
-/* Hero slider: 3 slides sharing a 9s cycle, staggered by 3s. */
 .slide {
   position: absolute;
   inset: 0;
@@ -93,7 +86,6 @@
   }
 }
 
-/* Reduced motion: stop the scroll and sliders, allow manual scrolling instead. */
 @media (prefers-reduced-motion: reduce) {
   .track {
     animation: none;
@@ -111,9 +103,7 @@
   .dot:nth-child(3) {
     opacity: 0;
   }
-  /* The base .slide rule is opacity: 0 and only the keyframes ever raised it,
-     so with the animation off every slide stays blank and the demo shows an
-     empty coloured band. Pin the first slide (and its dot) visible instead. */
+
   .slide:first-child,
   .dot:first-child {
     opacity: 1;

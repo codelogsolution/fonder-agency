@@ -5,14 +5,13 @@ import { getServicePage } from "@/config/site";
 import Reveal from "@/components/motion/Reveal";
 import CallToAction from "@/components/sections/CallToAction";
 
-// Shared layout for /services/[slug]; content comes from site.ts.
 export default function ServiceDetail({ slug, children }: { slug: string; children?: ReactNode }) {
   const service = getServicePage(slug);
   if (!service) return null;
 
   return (
     <>
-      {/* Page hero */}
+
       <section className="relative isolate mt-16 overflow-hidden pb-12 pt-16 md:mt-20 sm:pb-16 sm:pt-20">
         <div aria-hidden="true" className="pointer-events-none absolute inset-0 -z-10">
           <Image
@@ -51,7 +50,6 @@ export default function ServiceDetail({ slug, children }: { slug: string; childr
         </div>
       </section>
 
-      {/* Features + proof */}
       <section className="py-8 sm:py-14">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid gap-12 lg:grid-cols-2">
@@ -98,7 +96,6 @@ export default function ServiceDetail({ slug, children }: { slug: string; childr
         </div>
       </section>
 
-      {/* Structured process */}
       <section className="relative pb-8">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <Reveal className="max-w-2xl">

@@ -56,7 +56,7 @@ export default function Pillars() {
             <Reveal key={pillar.title} delay={(index % 3) * 0.1} className="h-full">
               <Tilt3D className="h-full" max={8} rounded="rounded-2xl">
                 <article className="group h-full overflow-hidden rounded-2xl border border-border-subtle bg-surface transition-[border-color,box-shadow] duration-300 hover:border-primary/40 hover:shadow-[0_16px_48px_rgba(2,132,199,0.08)]">
-                {/* Visual */}
+
                 <div
                   className={`relative aspect-[4/3] bg-gradient-to-br ${pillar.gradient}`}
                 >
@@ -66,7 +66,6 @@ export default function Pillars() {
                   </span>
                 </div>
 
-                {/* Body */}
                 <div className="p-8">
                   <h3 className="text-lg font-bold tracking-tight">
                     {pillar.title}

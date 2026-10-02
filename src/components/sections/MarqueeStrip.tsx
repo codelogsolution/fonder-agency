@@ -1,5 +1,5 @@
-// Kinetic keyword band — two oversized rows drifting in opposite directions.
-// Pure CSS transforms (pausable, reduced-motion aware via the global override).
+
+
 const rowA = ["Web Apps", "Mobile Apps", "SEO", "Branding", "UI/UX Design", "Growth"];
 const rowB = ["Next.js", "React Native", "Technical SEO", "Design Systems", "Content", "Analytics"];
 

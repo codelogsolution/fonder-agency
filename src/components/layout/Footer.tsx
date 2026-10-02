@@ -6,7 +6,6 @@ import { InstagramIcon, LinkedInIcon } from "@/components/ui/BrandIcons";
 import NewsletterForm from "@/components/layout/NewsletterForm";
 import BrandMark from "@/components/ui/BrandMark";
 
-// Re-scopes design tokens for the dark footer surface.
 const footerTokens = {
   "--foreground": "#f1f5f9",
   "--muted": "#94a3b8",
@@ -32,7 +31,7 @@ export default function Footer() {
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
         <div className="grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-12 lg:gap-8">
-          {/* Brand + social grid */}
+
           <div className="lg:col-span-4">
             <BrandMark className="mb-3 h-10 w-10" />
             <p className="text-lg font-extrabold tracking-tight">
@@ -64,7 +63,6 @@ export default function Footer() {
             </div>
           </div>
 
-          {/* Services */}
           <div className="lg:col-span-2">
             <p className="text-sm font-bold uppercase tracking-widest text-foreground">
               Services
@@ -87,7 +85,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Company */}
           <div className="lg:col-span-2">
             <p className="text-sm font-bold uppercase tracking-widest text-foreground">
               Company
@@ -110,7 +107,6 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Newsletter + contact */}
           <div className="min-w-0 lg:col-span-4">
             <p className="text-sm font-bold uppercase tracking-widest text-foreground">
               Newsletter
@@ -160,4 +156,3 @@ export default function Footer() {
     </footer>
   );
 }
-

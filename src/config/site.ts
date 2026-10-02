@@ -1,4 +1,4 @@
-// Site-wide configuration and content data.
+
 import {
   Code2,
   FileText,
@@ -66,7 +66,6 @@ export type HeroSlide = {
   label?: string;
 };
 
-// Hero slides, synced with the hero typewriter words.
 export const heroSlides: HeroSlide[] = [
   {
         word: "websites",
@@ -186,7 +185,6 @@ export type ServicePage = {
   process: ProcessStep[];
 };
 
-// /services/[slug] pages.
 export const servicePages: ServicePage[] = [
   {
     slug: "web-dev",
@@ -501,8 +499,6 @@ export interface ServicePreviewCopy {
   cardNote: string;
 }
 
-// Section copy for each service page's preview section, so no two service pages
-// read the same.
 const servicePreviewCopy: Record<string, ServicePreviewCopy> = {
   seo: {
     eyebrow: "Search performance",
@@ -550,7 +546,6 @@ export function getServicePreviewCopy(slug: string): ServicePreviewCopy {
   return servicePreviewCopy[slug] ?? defaultPreviewCopy;
 }
 
-// Fictional demo content, not real client data.
 const servicePreviewSeeds: Record<string, PreviewSeed[]> = {
   "app-dev": [
     ["app", "Daily rhythm", "Wellness app", ["Good morning, Alex", "Your daily goal · 6,000 steps", "Morning stretch · 12 minutes", "Mindful break · 5 minutes", "Evening walk · 20 minutes"]],
@@ -616,7 +611,6 @@ export type CaseStudy = {
   metrics: CaseMetric[];
 };
 
-// /work case studies.
 export const caseStudies: CaseStudy[] = [
   {
     client: "Aurelia",

@@ -51,7 +51,7 @@ function RotatingText({
       if (text.length > 0) {
         timer = setTimeout(() => setText(text.slice(0, -1)), deleteSpeed);
       } else {
-        // Word fully deleted — advance to the next word
+
         timer = setTimeout(() => {
           const next = (wordIndex + 1) % words.length;
           setWordIndex(next);
@@ -73,7 +73,7 @@ function RotatingText({
     >
       <span aria-hidden>
         {text}
-        {/* Blinking caret */}
+
         <span className="ml-0.5 inline-block h-[0.85em] w-[2px] translate-y-[0.08em] animate-pulse bg-current" />
       </span>
     </span>
@@ -81,6 +81,3 @@ function RotatingText({
 }
 
 export default memo(RotatingText);
-
-
-

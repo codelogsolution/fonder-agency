@@ -59,4 +59,3 @@ export default function ServicePreview({ slug }: { slug: string }) {
     </section>
   );
 }
-

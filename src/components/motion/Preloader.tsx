@@ -7,10 +7,6 @@ import { siteConfig } from "@/config/site";
 const DURATION = 1200;
 const EXIT_DELAY = 220;
 
-// Branded intro curtain — wordmark cascade, a real progress counter, then the
-// panel lifts away. Plays once per browser session; repeat visitors get the
-// overlay hidden before first paint via the `fd-skip-intro` inline script in
-// the root layout.
 export default function Preloader() {
   const reduced = useReducedMotion();
   const [visible, setVisible] = useState(true);
@@ -25,8 +21,6 @@ export default function Preloader() {
       setVisible(false);
     };
 
-    // Decide inside a frame callback so the preloader's first commit paints
-    // first (repeat visitors never see it — the fd-skip-intro CSS beats it).
     frame = requestAnimationFrame(() => {
       let seen = false;
       try {
@@ -41,14 +35,13 @@ export default function Preloader() {
       try {
         sessionStorage.setItem("fd-intro-seen", "1");
       } catch {
-        /* private mode — just play it every load */
+
       }
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         finish();
         return;
       }
 
-      // Lock page scroll while the curtain is up.
       document.documentElement.style.overflow = "hidden";
 
       const start = performance.now();

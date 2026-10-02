@@ -100,7 +100,6 @@ function clamp(value: number, min: number, max: number) {
   return Math.min(max, Math.max(min, value));
 }
 
-// The pinned experience is desktop-only.
 const DESKTOP_QUERY = "(min-width: 1024px)";
 
 function subscribeDesktop(callback: () => void) {
@@ -133,14 +132,13 @@ export default function StickyProcess() {
 const PANEL = "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8";
 const PANEL_WIDE = "mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-12 xl:px-20";
 
-// The dial — numbers never move; only the marker and arc travel.
 const DIAL_SIZE = 172;
 const RING_STROKE = 3;
 const RING_RADIUS = DIAL_SIZE / 2 - RING_STROKE / 2 - 3;
 const RING_CIRCUMFERENCE = 2 * Math.PI * RING_RADIUS;
-// One quarter-turn per phase; the extra quarter closes the loop at 12 o'clock.
+
 const MARKER_STEP = 360 / (PHASE_COUNT - 1);
-// Scroll budget of a single phase.
+
 const PHASE_SPAN = (PHASE_COUNT - 1) / PHASE_COUNT;
 
 function activeNumberAt(position: number) {
@@ -149,7 +147,6 @@ function activeNumberAt(position: number) {
 const NODE_SIZE = 30;
 const MARKER_SIZE = 16;
 
-// Node angles — 12, 3, 6, 9 o'clock in phase order.
 function nodeAngle(index: number) {
   return (index * (360 / PHASE_COUNT) - 90) * (Math.PI / 180);
 }
@@ -161,7 +158,6 @@ function ringPoint(angle: number) {
   };
 }
 
-// Rails geometry — one measured step, so both halves land on the same line.
 const FALLBACK_STEP = 384;
 const ROW_FRAME = "min-h-[24rem]";
 const AXIS_PULL = 22;
@@ -193,7 +189,7 @@ function ProcessDial({
       className="relative shrink-0"
       style={{ width: DIAL_SIZE, height: DIAL_SIZE }}
     >
-      {/* Grey ring + blue sweep, rotated to start at 12. */}
+
       <svg
         aria-hidden
         className="absolute inset-0 -rotate-90"
@@ -222,7 +218,6 @@ function ProcessDial({
         />
       </svg>
 
-      {/* Covers the axis rule so the line reads as passing through the dial. */}
       <div className="absolute inset-[30px] rounded-full border border-border-subtle bg-white shadow-[0_20px_46px_-28px_rgba(11,18,32,0.45)]" />
 
       <motion.span
@@ -238,7 +233,6 @@ function ProcessDial({
         }}
       />
 
-      {/* Numbered nodes — 1 top, 2 right, 3 bottom, 4 left. */}
       {phases.map((phase, index) => {
         const { x, y } = ringPoint(nodeAngle(index));
         const reached = index <= activeIndex;
@@ -266,7 +260,6 @@ function ProcessDial({
         );
       })}
 
-      {/* Readout for the centred phase. */}
       <div className="absolute inset-0 flex flex-col items-center justify-center">
         <AnimatePresence mode="wait" initial={false}>
           <motion.span
@@ -309,7 +302,6 @@ function SectionHeader() {
   );
 }
 
-// Rail blocks — both sides carry the same phase on the same measured step.
 function useBlockMotion(
   pos: MotionValue<number>,
   index: number,
@@ -328,7 +320,6 @@ function useBlockMotion(
   return { opacity, y, x };
 }
 
-// Left half — the promise for the phase level with the dial.
 function PromiseBlock({
   index,
   pos,
@@ -374,7 +365,6 @@ function PromiseBlock({
   );
 }
 
-// Right half — the concrete work for the same phase.
 function WorkBlock({
   index,
   pos,
@@ -428,7 +418,6 @@ function WorkBlock({
   );
 }
 
-// The row — measures its own height so a phase always fills the frame.
 function ProcessRow({
   pos,
   progress,
@@ -496,7 +485,6 @@ function ProcessRow({
         )}
       </motion.div>
 
-      {/* Edge fades into the frame. */}
       <div className="pointer-events-none absolute inset-x-0 top-0 z-20 h-14 bg-gradient-to-b from-white to-transparent" />
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 h-14 bg-gradient-to-t from-white to-transparent" />
     </div>
@@ -507,7 +495,6 @@ function ProcessRow({
       <div className={cn("relative grid items-stretch", ROW_FRAME, AXIS_GUTTER)}>
         {rail("left")}
 
-        {/* Axis rule with the dial centred on it. */}
         <div className="relative">
           <div
             aria-hidden
@@ -521,7 +508,6 @@ function ProcessRow({
         {rail("right")}
       </div>
 
-      {/* Position readout. */}
       <div className="mt-7 flex flex-wrap items-center gap-x-5 gap-y-3">
         <div className="min-w-[8rem] flex-1">
           <div className="h-1.2 overflow-hidden rounded-full bg-border-subtle">
@@ -571,7 +557,6 @@ function ProcessRow({
   );
 }
 
-// Desktop — one scrollYProgress (pos, 0 → 3) drives dial, rails and readout.
 const PHASE_TRACK = `${PHASE_COUNT * 88}vh`;
 
 function PinnedProcess() {
@@ -615,7 +600,6 @@ function PinnedProcess() {
   );
 }
 
-// Mobile / tablet — plain vertical flow, no pinning.
 function FlowProcess() {
   const flowRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({

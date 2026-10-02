@@ -5,12 +5,6 @@ import { useEffect } from "react";
 import { heroSlides } from "@/config/site";
 import { ShowcaseFallback } from "@/components/sections/ShowcaseCard";
 
-/**
- * Every demo in the slider renders inside one locked frame height. The three
- * card kinds carry different chrome (browser bar 44px / status bar + tab bar
- * 107px / demo bar 48px), so without this the whole section resized on every
- * slide change. 410px still leaves each demo a 300px+ scroll viewport.
- */
 const FRAME_HEIGHT = 410;
 
 const loadAppPhone = () => import("@/components/sections/showcase/AppPhone");
@@ -51,8 +45,6 @@ function normalizeSlide(slide: number, length: number): number {
 }
 
 function HeroPreviewLoading() {
-  // Mirrors the real card geometry (76px header + 12px gap + frame) so a chunk
-  // still loading can never make the slider jump.
   return (
     <div aria-hidden="true" className="flex flex-col motion-safe:animate-pulse">
       <div className="mx-auto h-[76px] w-44 rounded-xl bg-surface" />
@@ -65,7 +57,6 @@ export default function HeroPreview({ slide }: { slide: number }) {
   const index = normalizeSlide(slide, heroSlides.length);
   const slot: PreviewSlot = SLOT_BY_SLIDE[index] ?? FALLBACK_SLOT;
 
-  // Warm all three demo chunks once so later slides swap instantly.
   useEffect(() => {
     void loadAppPhone();
     void loadWebPage();
@@ -80,4 +71,3 @@ export default function HeroPreview({ slide }: { slide: number }) {
 export function HeroPreviewFallback() {
   return <ShowcaseFallback cards={1} height={FRAME_HEIGHT} />;
 }
-

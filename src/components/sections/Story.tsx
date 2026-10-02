@@ -37,7 +37,6 @@ const principles = [
   "Fixed-scope proposals with no surprises",
 ];
 
-// Agency story timeline + operating principles.
 export default function Story() {
   return (
     <section className="relative border-t border-border-subtle bg-surface/40 py-8 sm:py-14">
@@ -52,7 +51,7 @@ export default function Story() {
         </Reveal>
 
         <div className="mt-16 grid gap-16 lg:grid-cols-2">
-          {/* Timeline */}
+
           <ol className="relative space-y-10 border-l border-border-subtle pl-8">
             {timeline.map((entry, index) => (
               <Reveal key={entry.year} delay={index * 0.1}>
@@ -75,7 +74,6 @@ export default function Story() {
             ))}
           </ol>
 
-          {/* Operating principles / QA */}
           <Reveal delay={0.1}>
             <div className="h-full rounded-3xl border border-border-subtle bg-surface p-8">
               <h3 className="text-xl font-extrabold tracking-tight">

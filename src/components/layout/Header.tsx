@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import {
@@ -14,6 +14,7 @@ import { ArrowRight, ArrowUpRight, ChevronDown, Menu, X } from "lucide-react";
 import BrandMark from "@/components/ui/BrandMark";
 import { servicePages, siteConfig } from "@/config/site";
 import { cn } from "@/lib/utils";
+import { useScrollLock } from "@/lib/useScrollLock";
 import Button from "@/components/ui/Button";
 import Magnetic from "@/components/ui/Magnetic";
 
@@ -33,7 +34,6 @@ const mobileItem: Variants = {
   exit: { opacity: 0, x: -12, transition: { duration: 0.18 } },
 };
 
-// Route-aware nav link with active state.
 function NavLink({
   label,
   href,
@@ -95,6 +95,27 @@ export default function Header() {
   const [servicesOpen, setServicesOpen] = useState(false);
   const { scrollY } = useScroll();
 
+  useScrollLock(menuOpen);
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    const onKeyDown = (event: KeyboardEvent) => {
+      if (event.key === "Escape") setMenuOpen(false);
+    };
+    const onResize = () => {
+      if (window.matchMedia("(min-width: 60rem)").matches) setMenuOpen(false);
+    };
+
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("resize", onResize);
+    };
+  }, [menuOpen]);
+
   const isActive = (href: string) =>
     href === "/"
       ? pathname === "/"
@@ -115,7 +136,7 @@ export default function Header() {
       )}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 md:h-20 lg:px-8">
-        {/* Brand */}
+
         <Link href="/" className="group flex items-center gap-2.5">
           <span className="flex h-9 w-9 items-center justify-center rounded-xl bg-gradient-to-br from-[#0284c7] to-[#0ea5e9] text-white shadow-[0_4px_16px_rgba(2,132,199,0.3)] transition-transform duration-300 group-hover:rotate-6">
             <BrandMark className="h-9 w-9" />
@@ -126,7 +147,6 @@ export default function Header() {
           </span>
         </Link>
 
-        {/* Desktop nav */}
         <nav className="hidden items-center gap-9 lg:flex" aria-label="Primary">
           {siteConfig.nav.map((item) =>
             item.label === "Services" ? (
@@ -199,7 +219,6 @@ export default function Header() {
           )}
         </nav>
 
-        {/* Magnetic CTA */}
         <div className="hidden lg:block">
           <Magnetic strength={0.4}>
             <Button
@@ -212,7 +231,6 @@ export default function Header() {
           </Magnetic>
         </div>
 
-        {/* Mobile toggle */}
         <button
           type="button"
           onClick={() => setMenuOpen((open) => !open)}
@@ -239,7 +257,6 @@ export default function Header() {
         </button>
       </div>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {menuOpen && (
           <motion.nav
@@ -358,4 +375,3 @@ export default function Header() {
     </motion.header>
   );
 }
-

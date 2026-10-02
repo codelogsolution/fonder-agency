@@ -12,7 +12,7 @@ import { heroSlides } from "@/config/site";
 import { cn } from "@/lib/utils";
 
 const ROTATE_MS = 5500;
-/* Copy + demo frame + loading skeleton all swap on this beat. */
+
 const SWAP_S = 0.3;
 
 export default function HomeShowcase() {
@@ -20,8 +20,6 @@ export default function HomeShowcase() {
   const prefersReducedMotion = useReducedMotion();
   const slide = heroSlides[active % heroSlides.length];
 
-  // Re-armed on every change, manual navigation included, so the countdown, the
-  // progress bar and the demos never drift out of sync with each other.
   useEffect(() => {
     if (prefersReducedMotion) return;
     const timer = setTimeout(() => {
@@ -62,13 +60,7 @@ export default function HomeShowcase() {
           </p>
         </Reveal>
         <div className="mt-12 grid gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:gap-14">
-          {/* min-w-0 keeps this column from being pushed wide by the demo's
-              intrinsic width. The min-heights reserve room for the longest slide
-              copy (measured max: 424px below sm, 332px from sm up to the 960px
-              lg breakpoint) so the single-column stack is the same height on
-              every slide and mt-auto can pin the controls without the section
-              jumping. At lg the column stretches to the preview's height anyway
-              (row is 527px). */}
+
           <div className="flex min-w-0 flex-col min-h-[424px] sm:min-h-[332px]">
             <span className="inline-flex items-center rounded-full border border-primary/30 bg-primary/[0.08] px-3 py-1 text-[11px] font-bold uppercase tracking-[0.18em] text-primary">
               {slide.service}
@@ -121,9 +113,7 @@ export default function HomeShowcase() {
                 </motion.div>
               </AnimatePresence>
             </div>
-            {/* Stacked below sm so the nav pills always sit on their own line:
-                side by side, a long "Explore …" label wraps them and the row
-                grows by 52px on some slides only, which reads as a jump. */}
+
             <div className="mt-auto flex flex-col items-start gap-3 pt-6 sm:flex-row sm:flex-wrap sm:items-center sm:gap-4">
               <Link
                 href={slide.href}
@@ -156,9 +146,7 @@ export default function HomeShowcase() {
               </div>
             </div>
           </div>
-          {/* min-w-0 is what lets this column fit a 320px phone: without it the
-              demo's intrinsic width inflates the grid track and the section's
-              overflow-hidden clips the card. */}
+
           <Reveal delay={0.1} className="mx-auto w-full min-w-0 max-w-[400px] lg:max-w-[450px]">
             <Tilt3D className="relative" max={6} rounded="rounded-3xl">
             <AnimatePresence mode="wait">

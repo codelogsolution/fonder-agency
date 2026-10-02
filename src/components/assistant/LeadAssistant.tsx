@@ -34,7 +34,6 @@ const BUDGET_CHOICES: BudgetChoice[] = [
   { label: "Not sure yet \u2014 need guidance" },
 ];
 
-// Lead qualifier: pick service -> pick budget -> WhatsApp or contact form.
 export default function LeadAssistant({ initialOpen = false }: { initialOpen?: boolean }) {
   const [open, setOpen] = useState(initialOpen);
   const [step, setStep] = useState<Step>("service");
@@ -167,8 +166,6 @@ export default function LeadAssistant({ initialOpen = false }: { initialOpen?: b
                   </a>
                 </>
               )}
-
-
 
               {step === "done" && service && budget && (
                 <>

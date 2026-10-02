@@ -1,8 +1,6 @@
 import { caseStudies } from "@/config/site";
 import Reveal from "@/components/motion/Reveal";
 
-
-// Work-page case studies with static results and optional explanations.
 export default function CaseStudies() {
   return (
     <section className="relative pb-8">

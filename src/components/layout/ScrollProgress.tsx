@@ -2,7 +2,6 @@
 
 import { motion, useScroll, useSpring } from "framer-motion";
 
-// Thin accent progress bar pinned to the top of the viewport.
 export default function ScrollProgress() {
   const { scrollYProgress } = useScroll();
   const scaleX = useSpring(scrollYProgress, {

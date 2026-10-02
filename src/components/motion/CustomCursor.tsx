@@ -3,9 +3,6 @@
 import { useEffect, useState } from "react";
 import { motion, useMotionValue, useSpring } from "framer-motion";
 
-// Trailing cursor aura — a spring-lagged ring plus a precise center dot that
-// expand over interactive elements. Fine-pointer desktops only; the native
-// cursor stays visible for zero usability cost.
 export default function CustomCursor() {
   const [enabled, setEnabled] = useState(false);
   const [visible, setVisible] = useState(false);
@@ -18,8 +15,7 @@ export default function CustomCursor() {
   const ringY = useSpring(y, { stiffness: 260, damping: 24, mass: 0.55 });
 
   useEffect(() => {
-    // Enable inside a frame callback so enabling never causes a cascading
-    // synchronous re-render (react-hooks/set-state-in-effect).
+
     const frame = requestAnimationFrame(() => {
       if (!window.matchMedia("(pointer: fine)").matches) return;
       if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
@@ -68,7 +64,7 @@ export default function CustomCursor() {
       aria-hidden
       className="pointer-events-none fixed left-0 top-0 z-[110] hidden lg:block"
     >
-      {/* Spring-lagged ring */}
+
       <motion.div style={{ x: ringX, y: ringY }} className="absolute left-0 top-0">
         <motion.div
           animate={{
@@ -79,7 +75,7 @@ export default function CustomCursor() {
           className="h-10 w-10 -translate-x-1/2 -translate-y-1/2 rounded-full border-[1.5px] border-primary/60"
         />
       </motion.div>
-      {/* Precise dot */}
+
       <motion.div style={{ x, y }} className="absolute left-0 top-0">
         <motion.div
           animate={{ opacity: visible ? 1 : 0, scale: pressed ? 0.5 : 1 }}

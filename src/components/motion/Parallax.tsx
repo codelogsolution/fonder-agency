@@ -12,12 +12,10 @@ import {
 type ParallaxProps = {
   children: ReactNode;
   className?: string;
-  /** Pixels of drift across the section's trip through the viewport. */
+
   speed?: number;
 };
 
-// Scroll-linked parallax — content drifts (opposite the scroll direction)
-// while its section crosses the viewport. Spring-smoothed, transform-only.
 export default function Parallax({
   children,
   className,
