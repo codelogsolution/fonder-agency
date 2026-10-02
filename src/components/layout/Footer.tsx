@@ -31,7 +31,7 @@ export default function Footer() {
       style={footerTokens}
     >
       <div className="mx-auto max-w-7xl px-4 py-16 sm:px-6 lg:px-8 lg:py-20">
-        <div className="grid gap-12 lg:grid-cols-12 lg:gap-8">
+        <div className="grid grid-cols-[minmax(0,1fr)] gap-12 lg:grid-cols-12 lg:gap-8">
           {/* Brand + social grid */}
           <div className="lg:col-span-4">
             <BrandMark className="mb-3 h-10 w-10" />
@@ -111,7 +111,7 @@ export default function Footer() {
           </div>
 
           {/* Newsletter + contact */}
-          <div className="lg:col-span-4">
+          <div className="min-w-0 lg:col-span-4">
             <p className="text-sm font-bold uppercase tracking-widest text-foreground">
               Newsletter
             </p>

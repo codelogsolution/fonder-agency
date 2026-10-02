@@ -85,7 +85,7 @@ export default function Hero() {
       ref={sectionRef}
       id="home"
       onMouseMove={cursorReady ? handleMouseMove : undefined}
-      className="relative flex min-h-screen items-center overflow-hidden bg-background"
+      className="relative flex min-h-0 items-center overflow-hidden bg-background sm:min-h-screen"
     >
       <div aria-hidden className="absolute inset-0 bg-grid [mask-image:radial-gradient(ellipse_70%_60%_at_50%_35%,black_40%,transparent_100%)]" />
       <div aria-hidden className="pointer-events-none absolute left-0 top-0 hidden lg:block">
@@ -124,8 +124,8 @@ export default function Hero() {
           className="absolute bottom-[-8%] left-[22%] hidden h-[300px] w-[440px] rounded-full bg-[#0ea5e9]/[0.07] blur-[130px] will-change-transform lg:block"
         />
         <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-primary/40 to-transparent" />
-        <div className="absolute left-1/2 top-[12%] h-40 w-[560px] -translate-x-1/2 rounded-full border border-primary/10 blur-[1px]" />
-        <div className="absolute left-1/2 top-[16%] h-28 w-[420px] -translate-x-1/2 rounded-full border border-primary/[0.07]" />
+        <div className="absolute left-1/2 top-[12%] hidden h-40 w-[560px] -translate-x-1/2 rounded-full border border-primary/10 blur-[1px] sm:block" />
+        <div className="absolute left-1/2 top-[16%] hidden h-28 w-[420px] -translate-x-1/2 rounded-full border border-primary/[0.07] sm:block" />
       </motion.div>
       <div aria-hidden className="pointer-events-none absolute left-0 top-0 hidden lg:block">
         <div className="-translate-x-1/2 -translate-y-1/2">
@@ -136,18 +136,18 @@ export default function Hero() {
         </div>
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-4 pb-16 pt-28 sm:px-6 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)] lg:gap-10 lg:px-8 lg:pt-32">
+      <div className="relative mx-auto grid w-full max-w-7xl items-center gap-12 px-4 pb-8 pt-20 sm:px-6 sm:pb-14 sm:pt-24 lg:grid-cols-[minmax(0,1.3fr)_minmax(0,0.85fr)] lg:gap-10 lg:px-8 lg:pb-16 lg:pt-32">
         <div className="max-w-3xl lg:max-w-none">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6, delay: 0.1, ease }} className="flex flex-wrap items-center gap-3">
-            <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface/60 px-4 py-1.5 text-xs font-semibold text-primary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-border-subtle bg-surface/60 px-3 py-1 text-xs font-semibold text-primary sm:px-4 sm:py-1.5">
               <span className="h-1.5 w-1.5 rounded-full bg-primary animate-pulse" />
               FonderDigital • Marketing + Tech Agency
             </span>
-            <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-1.5 text-xs font-semibold text-primary">
+            <span className="inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-3 py-1 text-xs font-semibold text-primary sm:px-4 sm:py-1.5">
               2 project slots open
             </span>
           </motion.div>
-          <h1 className="mt-6 font-bold leading-[1.08] tracking-tight text-foreground text-4xl sm:text-5xl lg:text-[3.4rem] xl:text-6xl">
+          <h1 className="mt-5 text-balance font-bold leading-[1.05] tracking-tight text-foreground text-[2.15rem] sm:mt-6 sm:leading-[1.08] sm:text-5xl lg:text-[3.4rem] xl:text-6xl">
             <SplitText text="Everything you need to" delay={0.25} />
             <br />
             <span>launch, market</span>{" "}
@@ -166,7 +166,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.05, ease }}
-            className="mt-6 max-w-2xl text-base leading-relaxed text-muted sm:text-lg"
+            className="mt-5 max-w-2xl text-[15px] leading-relaxed text-muted sm:mt-6 sm:text-base sm:text-lg"
           >
             FonderDigital helps startups & growing brands with websites, apps, SEO, social media, branding, design & content — one passionate team for all your marketing and tech needs.
           </motion.p>
@@ -174,7 +174,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 24 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.2, ease }}
-            className="mt-10 flex flex-wrap items-center gap-4"
+            className="mt-7 flex flex-wrap items-center gap-3 sm:mt-10 sm:gap-4"
           >
             <Button href="/contact" size="lg">
               Get Free Growth Plan <ArrowRight className="h-5 w-5" />
@@ -187,7 +187,7 @@ export default function Hero() {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 1.45, ease }}
-            className="mt-12 flex flex-wrap items-center gap-x-6 gap-y-4"
+            className="mt-8 flex flex-wrap items-center gap-x-6 gap-y-4 sm:mt-12"
           >
             <div className="flex items-center gap-5">
               <div className="flex -space-x-3">
@@ -221,14 +221,14 @@ export default function Hero() {
               aria-hidden
               className="hidden h-10 w-px bg-border-subtle sm:block"
             />
-            <p className="max-w-[16rem] text-xs leading-relaxed text-muted">
+            <p className="hidden max-w-[16rem] text-xs leading-relaxed text-muted sm:block">
               Longest client partnership:{" "}
               <strong className="font-semibold text-foreground">
                 3 years and counting
               </strong>
             </p>
           </motion.div>
-          <div className="mt-10 flex flex-wrap gap-2">
+          <div className="mt-8 hidden flex-wrap gap-2 sm:mt-10 sm:flex">
             {heroServices.map((service) => {
               const Icon = service.icon;
               return (
@@ -250,7 +250,7 @@ export default function Hero() {
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -6 }}
               transition={{ duration: 0.4, ease }}
-              className="mt-4 text-xs font-semibold text-muted"
+              className="mt-3 text-xs font-semibold text-muted sm:mt-4"
             >
               <span className="text-primary">{slide.stat}</span> {slide.caption}
               {" · "}
@@ -264,7 +264,7 @@ export default function Hero() {
               opacity: { duration: 0.6, delay: 1.7 },
               y: { repeat: Infinity, duration: 2, ease: "easeInOut" },
             }}
-            className="mt-8 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted"
+            className="mt-6 flex items-center gap-3 text-xs font-semibold uppercase tracking-[0.2em] text-muted sm:mt-8"
             aria-hidden
           >
             <ChevronDown className="h-4 w-4" />
@@ -376,7 +376,7 @@ export default function Hero() {
       </div>
       <div
         aria-hidden
-        className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-background to-transparent"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-background to-transparent sm:h-40"
       />
     </section>
   );
