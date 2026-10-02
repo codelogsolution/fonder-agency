@@ -12,6 +12,18 @@
   --primary: #0284c7;
   --primary-foreground: #ffffff;
   --muted: #5b6b81;
+
+  --font-sans-family:
+    var(--font-instrument), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
+    sans-serif;
+
+  --font-display-family:
+    var(--font-bricolage), var(--font-instrument), ui-sans-serif, system-ui,
+    sans-serif;
+
+  --font-mono-family:
+    var(--font-jetbrains), ui-monospace, SFMono-Regular, Menlo, Consolas,
+    "Liberation Mono", monospace;
 }
 
 @theme inline {
@@ -25,12 +37,11 @@
   --color-primary-foreground: var(--primary-foreground);
   --color-muted: var(--muted);
 
-  --font-sans:
-    var(--font-jakarta), ui-sans-serif, system-ui, -apple-system, "Segoe UI",
-    sans-serif;
+  --font-sans: var(--font-sans-family);
 
-  --font-mono:
-    ui-monospace, SFMono-Regular, Menlo, Consolas, "Liberation Mono", monospace;
+  --font-display: var(--font-display-family);
+
+  --font-mono: var(--font-mono-family);
 
   --breakpoint-sm: 40rem;
   --breakpoint-md: 48rem;
@@ -96,10 +107,20 @@ section[id] {
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-sans);
+  font-family: var(--font-sans-family);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   overflow-x: clip;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-display-family);
+  font-weight: 700;
 }
 
 ::selection {

@@ -20,7 +20,7 @@ export default function TrustMetrics() {
                   <Icon className="h-6 w-6" />
                 </span>
                 <div>
-                  <p className="text-3xl font-extrabold tracking-tight sm:text-4xl">
+                  <p className="font-display text-3xl font-extrabold tracking-tight sm:text-4xl">
                     <CountUp to={to} suffix={suffix} />
                   </p>
                   <p className="mt-1 text-sm text-muted">{label}</p>

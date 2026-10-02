@@ -101,7 +101,7 @@ export default function RecentWins() {
                     className="group flex h-full flex-col justify-between rounded-[1.75rem] border border-border-subtle bg-surface p-8 transition-colors duration-300 hover:border-primary/40"
                   >
                     <div className="flex items-start justify-between gap-4">
-                      <p className="text-gradient text-6xl font-extrabold tracking-tight">
+                      <p className="font-display text-gradient text-6xl font-extrabold tracking-tight">
                         {win.metric}
                       </p>
                       <ArrowUpRight className="h-5 w-5 shrink-0 text-muted transition-all duration-300 group-hover:-translate-y-1 group-hover:translate-x-1 group-hover:text-primary" />
